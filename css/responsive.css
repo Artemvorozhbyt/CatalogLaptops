@@ -1,0 +1,84 @@
+/* ── Responsive ── */
+@media (max-width: 900px) {
+    aside {
+        display: none;
+    }
+
+    aside.open {
+        display: block;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        z-index: 90;
+        height: calc(100vh - 64px);
+    }
+
+    .sidebar-toggle {
+        display: flex;
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        padding: 2.5rem 1rem 2rem;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    header {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    .modal {
+        padding: 1.3rem;
+    }
+
+    .modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .modal-specs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .list-card .card-img {
+        width: 110px;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .toolbar-right {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-specs {
+        justify-content: center;
+    }
+
+    .pagination {
+        gap: 0.2rem;
+    }
+
+    .page-btn {
+        min-width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+}

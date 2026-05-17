@@ -1,0 +1,130 @@
+/* ── Header ── */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(15, 17, 23, 0.92);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text);
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ── Hero ── */
+.hero {
+    background: linear-gradient(135deg, #12142a 0%, #1a1040 50%, #0f1117 100%);
+    padding: 4rem 2rem 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero h1 {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.75rem;
+}
+
+.hero h1 span {
+    color: var(--accent2);
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 1.05rem;
+    max-width: 520px;
+    margin: 0 auto 1.8rem;
+}
+
+/* ── Layout ── */
+.page {
+    display: flex;
+    gap: 0;
+    min-height: calc(100vh - 64px);
+}
+
+/* ── Sidebar ── */
+aside {
+    width: 268px;
+    flex-shrink: 0;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 1.2rem;
+    position: sticky;
+    top: 64px;
+    height: calc(100vh - 64px);
+    overflow-y: auto;
+}
+
+/* ── Main Content ── */
+main {
+    flex: 1;
+    padding: 1.5rem 1.6rem;
+    overflow: hidden;
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-bottom: 1.3rem;
+}
+
+.results-info {
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.results-info strong {
+    color: var(--text);
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+/* ── Grid / List ── */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1.1rem;
+}
+
+.catalog-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+/* ── Pagination ── */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}

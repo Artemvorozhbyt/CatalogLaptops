@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "scripts": {
+    "build:laptop-images": "node scripts/generate-laptop-images.mjs"
+  }
+}

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LaptopCatalog — Каталог ноутбуків</title>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/layout.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <!-- ── Header ── -->
+    <header>
+      <div class="logo">Laptop<span>Catalog</span></div>
+      <div class="header-right">
+        <div class="language-selector">
+          <button class="lang-btn active" data-lang="uk">🇺🇦 UK</button>
+          <button class="lang-btn" data-lang="pl">🇵🇱 PL</button>
+          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+        </div>
+        <button class="sidebar-toggle" id="sidebarToggle">☰ <span id="filtersLabel">Фільтри</span></button>
+        <button class="compare-btn" id="openCompare">
+          ⚖️ <span id="compareLabel">Порівняти</span>
+          <span class="compare-count" id="compareCount">0</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <h1 id="heroTitle">Каталог <span>ноутбуків</span></h1>
+      <p id="heroSubtitle">Понад 55 моделей від провідних брендів — знайдіть свій ідеальний ноутбук</p>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Пошук за назвою, брендом, процесором..." />
+        <button>🔍</button>
+      </div>
+    </section>
+
+    <!-- ── Page ── -->
+    <div class="page">
+      <!-- ── Sidebar ── -->
+      <aside id="sidebar">
+        <!-- Brand -->
+        <div class="filter-group">
+          <div class="filter-title" data-i18n="brand">Бренд</div>
+          <div class="check-list" id="brandFilters"></div>
+        </div>
+
+        <!-- Category -->
+        <div class="filter-group">
+          <div class="filter-title" data-i18n="category">Категорія</div>
+          <div class="check-list" id="categoryFilters"></div>
+        </div>
+
+        <!-- Price -->
+        <div class="filter-group">
+          <div class="filter-title" data-i18n="price">Ціна (PLN)</div>
+          <div class="price-inputs">
+            <input type="number" id="priceMin" placeholder="Від" min="0" data-i18n-placeholder="from" />
+            <span class="price-sep">—</span>
+            <input type="number" id="priceMax" placeholder="До" min="0" data-i18n-placeholder="to" />
+          </div>
+          <input type="range" id="priceRange" min="0" max="5000" step="50" value="5000" />
+        </div>
+
+        <!-- RAM -->
+        <div class="filter-group">
+          <div class="filter-title" data-i18n="ram">Оперативна пам'ять</div>
+          <div class="check-list" id="ramFilters"></div>
+        </div>
+
+        <!-- Display -->
+        <div class="filter-group">
+          <div class="filter-title" data-i18n="screen_size">Розмір екрану</div>
+          <div class="check-list" id="screenFilters"></div>
+        </div>
+
+        <!-- GPU -->
+        <div class="filter-group">
+          <div class="filter-title" data-i18n="graphics">Відеокарта</div>
+          <div class="check-list" id="gpuFilters"></div>
+        </div>
+
+        <button class="filter-reset" id="resetFilters" data-i18n="reset_filters">✕ Скинути фільтри</button>
+      </aside>
+
+      <!-- ── Main ── -->
+      <main>
+        <div class="toolbar">
+          <span class="results-info" data-i18n-showing="showing">
+            Показано <strong id="resultCount">0</strong> <span data-i18n="laptops">ноутбуків</span>
+          </span>
+          <div class="toolbar-right">
+            <select class="sort-select" id="sortSelect">
+              <option value="default" data-i18n="sort_default">За замовчуванням</option>
+              <option value="price-asc" data-i18n="sort_price_asc">Ціна: від низької</option>
+              <option value="price-desc" data-i18n="sort_price_desc">Ціна: від високої</option>
+              <option value="name-asc" data-i18n="sort_name_asc">Назва: А → Я</option>
+              <option value="name-desc" data-i18n="sort_name_desc">Назва: Я → А</option>
+              <option value="ram-desc" data-i18n="sort_ram_desc">RAM: від більшої</option>
+            </select>
+            <div class="view-btns">
+              <button class="view-btn active" id="gridViewBtn" title="Сітка">▦</button>
+              <button class="view-btn" id="listViewBtn" title="Список">☰</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="active-filters" id="activeFilters"></div>
+
+        <div class="catalog-grid" id="catalog"></div>
+        <div class="pagination" id="pagination"></div>
+      </main>
+    </div>
+
+    <!-- ── Detail Modal ── -->
+    <div class="modal-overlay" id="detailModal">
+      <div class="modal" id="detailModalContent">
+        <button class="modal-close" id="closeDetail">✕</button>
+      </div>
+    </div>
+
+    <!-- ── Compare Modal ── -->
+    <div class="modal-overlay compare-modal" id="compareModal">
+      <div class="modal">
+        <button class="modal-close" id="closeCompare">✕</button>
+        <h2 style="margin-bottom: 1.2rem">⚖️ Порівняння ноутбуків</h2>
+        <div id="compareContent"></div>
+      </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>
