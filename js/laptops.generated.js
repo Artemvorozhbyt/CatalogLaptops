@@ -12,9 +12,9 @@ const slugify = (text = "") =>
 const generateImages = (source) => {
   const slug = slugify(source || "");
   return [
-    `/images/laptops/${slug}-1.jpg`,
-    `/images/laptops/${slug}-2.jpg`,
-    `/images/laptops/${slug}-3.jpg`,
+    `images/laptops/${slug}-1.jpg`,
+    `images/laptops/${slug}-2.jpg`,
+    `images/laptops/${slug}-3.jpg`,
   ];
 };
 

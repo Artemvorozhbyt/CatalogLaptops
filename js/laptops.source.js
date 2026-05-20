@@ -18,9 +18,9 @@ export const laptops = [
     badge: "hot",
     emoji: "🎮",
     images: [
-      "https://via.placeholder.com/400x300?text=Lenovo+Legion+5+Front",
-      "https://via.placeholder.com/400x300?text=Lenovo+Legion+5+Side",
-      "https://via.placeholder.com/400x300?text=Lenovo+Legion+5+Detail"
+      "images/laptops/legion-5-15-6-ryzen-16gb-512gb-ssd-fhd-ips-1.jpg",
+      "images/laptops/legion-5-15-6-ryzen-16gb-512gb-ssd-fhd-ips-2.jpg",
+      "images/laptops/legion-5-15-6-ryzen-16gb-512gb-ssd-fhd-ips-3.jpg"  
     ],
     desc: {
       uk: "Lenovo Legion 5 із Ryzen 7 та GTX 1660 Ti — ігрова машина для геймінгу та роботи.",
@@ -45,9 +45,9 @@ export const laptops = [
     badge: "new",
     emoji: "🍏",
     images: [
-      "https://via.placeholder.com/400x300?text=MacBook+Air+M1+Front",
-      "https://via.placeholder.com/400x300?text=MacBook+Air+M1+Side",
-      "https://via.placeholder.com/400x300?text=MacBook+Air+M1+Detail"
+      "images/laptops/macbook-air-13-m1-16gb-512gb-ssd-retina-a2337-1.jpg",
+      "images/laptops/macbook-air-13-m1-16gb-512gb-ssd-retina-a2337-2.jpg",
+      "images/laptops/macbook-air-13-m1-16gb-512gb-ssd-retina-a2337-3.jpg"
     ],
     desc: {
       uk: "MacBook Air M1 — тихий ультрабук з алюмінієвим корпусом і високою автономністю.",
@@ -70,9 +70,9 @@ export const laptops = [
     weight: "2.3 kg",
     battery: "6 годин",
     images: [
-      "https://via.placeholder.com/400x300?text=ASUS+ROG+Strix+Front",
-      "https://via.placeholder.com/400x300?text=ASUS+ROG+Strix+Side",
-      "https://via.placeholder.com/400x300?text=ASUS+ROG+Strix+Detail"
+      "images/laptops/rog-strix-15-6-i5-16gb-512gb-ssd-gaming-1.jpg",
+      "images/laptops/rog-strix-15-6-i5-16gb-512gb-ssd-gaming-2.jpg",
+      "images/laptops/rog-strix-15-6-i5-16gb-512gb-ssd-gaming-3.jpg"
     ],
     badge: "hot",
     emoji: "🎮",
@@ -98,6 +98,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/lenovo-thinkpad-14-1.jpg",
+            "images/laptops/lenovo-thinkpad-14-2.jpg",
+            "images/laptops/lenovo-thinkpad-14-3.jpg"
+          ],
           desc: "Бізнес‑ноутбук Lenovo ThinkPad з міцним корпусом і FHD екраном.",
         },
         {
@@ -116,6 +121,11 @@ export const laptops = [
           battery: "9 годин",
           badge: null,
           emoji: "🖥️",
+          images: [
+            "images/laptops/dell-latitude-5410-1.jpg",
+            "images/laptops/dell-latitude-5410-2.jpg",
+            "images/laptops/dell-latitude-5410-3.jpg"
+          ],
           desc: "Dell Latitude 5410 — надійний бізнес‑ноутбук з IPS‑екраном та довгим часом роботи.",
         },
         {
@@ -134,6 +144,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "🍎",
+          images: [
+            "images/laptops/apple-macbook-pro-13-1.jpg",
+            "images/laptops/apple-macbook-pro-13-2.jpg",
+            "images/laptops/apple-macbook-pro-13-3.jpg"
+          ],
           desc: "MacBook Pro 2019 — якість дисплею Retina та надійність для роботи.",
         },
         {
@@ -152,6 +167,11 @@ export const laptops = [
           battery: "7 годин",
           badge: "hot",
           emoji: "🔥",
+          images: [
+            "images/laptops/acer-nitro-5-1.jpg",
+            "images/laptops/acer-nitro-5-2.jpg",
+            "images/laptops/acer-nitro-5-3.jpg"
+          ],
           desc: "Acer Nitro 5 з GTX 1650 — баланс продуктивності та ціни для ігрових користувачів.",
         },
         {
@@ -170,6 +190,11 @@ export const laptops = [
           battery: "6 годин",
           badge: null,
           emoji: "🎮",
+          images: [
+            "images/laptops/dell-g3-gaming-1.jpg",
+            "images/laptops/dell-g3-gaming-2.jpg",
+            "images/laptops/dell-g3-gaming-3.jpg"
+          ],
           desc: "Dell G3 Gaming із GTX 1650 — доступний вступ у світ геймінгу.",
         },
         {
@@ -188,6 +213,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/hp-elitebook-840-g6-1.jpg",
+            "images/laptops/hp-elitebook-840-g6-2.jpg",
+            "images/laptops/hp-elitebook-840-g6-3.jpg"
+          ],
           desc: "HP EliteBook 840 G6 — стильний і витривалий офісний ноутбук.",
         },
         {
@@ -206,6 +236,11 @@ export const laptops = [
           battery: "11 годин",
           badge: null,
           emoji: "💻",
+          images: [
+            "images/laptops/hp-probook-430-g8-1.jpg",
+            "images/laptops/hp-probook-430-g8-2.jpg",
+            "images/laptops/hp-probook-430-g8-3.jpg"
+          ],
           desc: "Компактний ProBook 430 G8 — легкий та економічний ноутбук для офісної роботи.",
         },
         {
@@ -224,6 +259,11 @@ export const laptops = [
           battery: "9 годин",
           badge: null,
           emoji: "💻",
+          images: [
+            "images/laptops/hp-probook-440-g9-1.jpg",
+            "images/laptops/hp-probook-440-g9-2.jpg",
+            "images/laptops/hp-probook-440-g9-3.jpg"
+          ],
           desc: "HP ProBook 440 G9 — офісний ноутбук з новим процесором Intel та тонким дизайном.",
         },
         {
@@ -242,6 +282,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "🧳",
+          images: [
+            "images/laptops/lenovo-thinkpad-1.jpg",
+            "images/laptops/lenovo-thinkpad-2.jpg",
+            "images/laptops/lenovo-thinkpad-3.jpg"
+          ],
           desc: "Lenovo ThinkPad — класика ділового ноутбука з високою надійністю та ергономікою.",
         },
         {
@@ -260,6 +305,11 @@ export const laptops = [
           battery: "12 годин",
           badge: "new",
           emoji: "💼",
+          images: [
+            "images/laptops/lenovo-thinkpad-l14-gen2-1.jpg",
+            "images/laptops/lenovo-thinkpad-l14-gen2-2.jpg",
+            "images/laptops/lenovo-thinkpad-l14-gen2-3.jpg"
+          ],
           desc: "Lenovo ThinkPad L14 Gen2 — оновлена версія з Iris Xe та покращеним екраном.",
         },
         {
@@ -278,6 +328,11 @@ export const laptops = [
           battery: "8 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-e5470-1.jpg",
+            "images/laptops/dell-latitude-e5470-2.jpg",
+            "images/laptops/dell-latitude-e5470-3.jpg"
+          ],
           desc: "Dell Latitude E5470 — перевірений бізнес‑ноутбук з процесором 6‑го покоління Intel.",
         },
 
@@ -297,6 +352,11 @@ export const laptops = [
           battery: "11 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/lenovo-thinkpad-t14-gen1-1.jpg",
+            "images/laptops/lenovo-thinkpad-t14-gen1-2.jpg",
+            "images/laptops/lenovo-thinkpad-t14-gen1-3.jpg"
+          ],
           desc: "Lenovo ThinkPad T14 Gen1 — сучасний бізнес‑ноутбук із комфортною клавіатурою й досконалою якістю збірки.",
         },
         {
@@ -315,6 +375,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-7490-1.jpg",
+            "images/laptops/dell-latitude-7490-2.jpg",
+            "images/laptops/dell-latitude-7490-3.jpg"
+          ],
           desc: "Latitude 7490 — преміум‑клас серед бізнес лінійки Dell із потужним i7 та тонким дизайном.",
         },
         {
@@ -333,6 +398,11 @@ export const laptops = [
           battery: "11 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/hp-elitebook-840-g7-1.jpg",
+            "images/laptops/hp-elitebook-840-g7-2.jpg",
+            "images/laptops/hp-elitebook-840-g7-3.jpg"
+          ],
           desc: "HP EliteBook 840 G7 поєднує надійність серії Elite та елегантний дизайн для щоденної роботи.",
         },
         {
@@ -351,6 +421,11 @@ export const laptops = [
           battery: "8 годин",
           badge: null,
           emoji: "💻",
+          images: [
+            "images/laptops/dell-latitude-7280-touch-1.jpg",
+            "images/laptops/dell-latitude-7280-touch-2.jpg",
+            "images/laptops/dell-latitude-7280-touch-3.jpg"
+          ],
           desc: "Компактний Latitude 7280 з сенсорним екраном — зручний у подорожах та роботі в дорозі.",
         },
         {
@@ -369,6 +444,11 @@ export const laptops = [
           battery: "17 годин",
           badge: "hot",
           emoji: "🍏",
+          images: [
+            "images/laptops/apple-macbook-pro-14-m1-1.jpg",
+            "images/laptops/apple-macbook-pro-14-m1-2.jpg",
+            "images/laptops/apple-macbook-pro-14-m1-3.jpg"
+          ],
           desc: "MacBook Pro 14 M1 Pro — неймовірна потужність для монтажу, графіки та розробки.",
         },
         {
@@ -387,6 +467,11 @@ export const laptops = [
           battery: "6 годин",
           badge: "new",
           emoji: "🎮",
+          images: [
+            "images/laptops/acer-nitro-v15-1.jpg",
+            "images/laptops/acer-nitro-v15-2.jpg",
+            "images/laptops/acer-nitro-v15-3.jpg"
+          ],
           desc: "Acer Nitro V15 — нове покоління ігрової серії з RTX 4050 та високою частотою оновлення екрану.",
         },
         {
@@ -405,6 +490,11 @@ export const laptops = [
           battery: "8 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-7280-1.jpg",
+            "images/laptops/dell-latitude-7280-2.jpg",
+            "images/laptops/dell-latitude-7280-3.jpg"
+          ],
           desc: "Dell Latitude 7280 — компактний та надійний офісний ноутбук для бізнес‑класу.",
         },
         {
@@ -423,6 +513,11 @@ export const laptops = [
           battery: "6 годин",
           badge: "hot",
           emoji: "🎮",
+          images: [
+            "images/laptops/lenovo-ideapad-gaming-3-1.jpg",
+            "images/laptops/lenovo-ideapad-gaming-3-2.jpg",
+            "images/laptops/lenovo-ideapad-gaming-3-3.jpg"
+          ],
           desc: "Lenovo IdeaPad Gaming 3 — доступний геймерський ноутбук із Ryzen та GTX графікою.",
         },
         {
@@ -441,6 +536,11 @@ export const laptops = [
           battery: "9 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-5580-1.jpg",
+            "images/laptops/dell-latitude-5580-2.jpg",
+            "images/laptops/dell-latitude-5580-3.jpg"
+          ],
           desc: "Надійний Dell Latitude 5580 для щоденної офісної роботи з великим екраном 15.6 дюймів.",
         },
         {
@@ -459,6 +559,11 @@ export const laptops = [
           battery: "6 годин",
           badge: null,
           emoji: "🎮",
+          images: [
+            "images/laptops/lenovo-ideapad-gaming-3-i5-1.jpg",
+            "images/laptops/lenovo-ideapad-gaming-3-i5-2.jpg",
+            "images/laptops/lenovo-ideapad-gaming-3-i5-3.jpg"
+          ],
           desc: "Lenovo IdeaPad Gaming 3 на Intel Core i5 та RTX 3050 — сучасна ігрова модель для середнього класу.",
         },
         {
@@ -477,6 +582,11 @@ export const laptops = [
           battery: "8 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-7280-hd-1.jpg",
+            "images/laptops/dell-latitude-7280-hd-2.jpg",
+            "images/laptops/dell-latitude-7280-hd-3.jpg"
+          ],
           desc: "Latitude 7280 — міцний та портативний бізнес‑ноутбук з компактним екраном.",
         },
         {
@@ -495,6 +605,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-7390-1.jpg",
+            "images/laptops/dell-latitude-7390-2.jpg",
+            "images/laptops/dell-latitude-7390-3.jpg"
+          ],
           desc: "Dell Latitude 7390 — тонкий ультрабук для бізнесу з яскравим FHD екраном.",
         },
         {
@@ -513,6 +628,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "💻",
+          images: [
+            "images/laptops/dell-latitude-7390-czarny-1.jpg",
+            "images/laptops/dell-latitude-7390-czarny-2.jpg",
+            "images/laptops/dell-latitude-7390-czarny-3.jpg"
+          ],
           desc: "Latitude 7390 у чорному корпусі зберігає міцність та портативність серії для мобільних працівників.",
         },
         {
@@ -531,6 +651,11 @@ export const laptops = [
           battery: "9 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/lenovo-thinkpad-l480-1.jpg",
+            "images/laptops/lenovo-thinkpad-l480-2.jpg",
+            "images/laptops/lenovo-thinkpad-l480-3.jpg"
+          ],
           desc: "Lenovo ThinkPad L480 — надійний робочий інструмент із качественою клавіатурою та збалансованими характеристиками.",
         },
 
@@ -550,6 +675,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-7490-i5-1.jpg",
+            "images/laptops/dell-latitude-7490-i5-2.jpg",
+            "images/laptops/dell-latitude-7490-i5-3.jpg"
+          ],
           desc: "Dell Latitude 7490 — преміум‑бізнес ноутбук із міцним корпусом і повноцінним набором портів.",
         },
         {
@@ -568,6 +698,11 @@ export const laptops = [
           battery: "9 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/lenovo-thinkpad-x280-1.jpg",
+            "images/laptops/lenovo-thinkpad-x280-2.jpg",
+            "images/laptops/lenovo-thinkpad-x280-3.jpg"
+          ],
           desc: "Компактний і міцний ThinkPad X280 для працівників, які часто подорожують.",
         },
         {
@@ -586,6 +721,11 @@ export const laptops = [
           battery: "9 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-3510-1.jpg",
+            "images/laptops/dell-latitude-3510-2.jpg",
+            "images/laptops/dell-latitude-3510-3.jpg"
+          ],
           desc: "Latitude 3510 — офісний ноутбук Dell із повнорозмірним екраном та потужною роботою на батареї.",
         },
         {
@@ -604,6 +744,11 @@ export const laptops = [
           battery: "11 годин",
           badge: "new",
           emoji: "💼",
+          images: [
+            "images/laptops/hp-probook-640-g8-1.jpg",
+            "images/laptops/hp-probook-640-g8-2.jpg",
+            "images/laptops/hp-probook-640-g8-3.jpg"
+          ],
           desc: "HP ProBook 640 G8 — сучасний тонкий ноутбук для бізнесу з потужним процесором Intel 11‑го покоління.",
         },
         {
@@ -622,6 +767,11 @@ export const laptops = [
           battery: "11 годин",
           badge: "hot",
           emoji: "💻",
+          images: [
+            "images/laptops/hp-probook-440-g8-1.jpg",
+            "images/laptops/hp-probook-440-g8-2.jpg",
+            "images/laptops/hp-probook-440-g8-3.jpg"
+          ],
           desc: "HP ProBook 440 G8 із дискретною графікою MX450 — відмінний баланс для роботи й мультимедіа.",
         },
         {
@@ -640,6 +790,11 @@ export const laptops = [
           battery: "12 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/lenovo-thinkpad-t14s-1.jpg",
+            "images/laptops/lenovo-thinkpad-t14s-2.jpg",
+            "images/laptops/lenovo-thinkpad-t14s-3.jpg"
+          ],
           desc: "Легкий ThinkPad T14s з Ryzen 5 — тихий, автономний та дуже надійний ультрабук для бізнесу.",
         },
         {
@@ -658,6 +813,11 @@ export const laptops = [
           battery: "8 годин",
           badge: null,
           emoji: "💻",
+          images: [
+            "images/laptops/lenovo-thinkpad-e14-gen2-1.jpg",
+            "images/laptops/lenovo-thinkpad-e14-gen2-2.jpg",
+            "images/laptops/lenovo-thinkpad-e14-gen2-3.jpg"
+          ],
           desc: "Lenovo ThinkPad E14 Gen2 — відмінний робочий інструмент для офісних завдань та навчання.",
         },
         {
@@ -676,6 +836,11 @@ export const laptops = [
           battery: "13 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/lenovo-thinkpad-t14-gen1-ryzen-1.jpg",
+            "images/laptops/lenovo-thinkpad-t14-gen1-ryzen-2.jpg",
+            "images/laptops/lenovo-thinkpad-t14-gen1-ryzen-3.jpg"
+          ],
           desc: "T14 Gen1 на Ryzen 5 — оптимальний для користувачів, які цінують продуктивність і автономність.",
         },
         {
@@ -694,6 +859,11 @@ export const laptops = [
           battery: "11 годин",
           badge: null,
           emoji: "🧳",
+          images: [
+            "images/laptops/lenovo-thinkpad-t14-gen1-i5-1.jpg",
+            "images/laptops/lenovo-thinkpad-t14-gen1-i5-2.jpg",
+            "images/laptops/lenovo-thinkpad-t14-gen1-i5-3.jpg"
+          ],
           desc: "ThinkPad T14 Gen1 на Intel Core i5 — міцний бізнес‑ноутбук з класичним дизайном і портами.",
         },
         {
@@ -712,6 +882,11 @@ export const laptops = [
           battery: "9 годин",
           badge: null,
           emoji: "💻",
+          images: [
+            "images/laptops/dell-latitude-3420-1.jpg",
+            "images/laptops/dell-latitude-3420-2.jpg",
+            "images/laptops/dell-latitude-3420-3.jpg"
+          ],
           desc: "Latitude 3420 — базовий Dell для офісу та навчання із новим поколінням процесора Intel.",
         },
         {
@@ -730,6 +905,11 @@ export const laptops = [
           battery: "11 годин",
           badge: "new",
           emoji: "💼",
+          images: [
+            "images/laptops/hp-elitebook-830-g8-1.jpg",
+            "images/laptops/hp-elitebook-830-g8-2.jpg",
+            "images/laptops/hp-elitebook-830-g8-3.jpg"
+          ],
           desc: "HP EliteBook 830 G8 — легкий і міцний ноутбук для щоденної професійної роботи.",
         },
         {
@@ -748,6 +928,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/lenovo-thinkpad-l490-1.jpg",
+            "images/laptops/lenovo-thinkpad-l490-2.jpg",
+            "images/laptops/lenovo-thinkpad-l490-3.jpg"
+          ],
           desc: "Lenovo ThinkPad L490 — збалансований бізнес‑ноутбук із якісною збіркою та тихою роботою.",
         },
         {
@@ -766,6 +951,11 @@ export const laptops = [
           battery: "9 годин",
           badge: null,
           emoji: "💻",
+          images: [
+            "images/laptops/hp-probook-640-g8-srebrny-1.jpg",
+            "images/laptops/hp-probook-640-g8-srebrny-2.jpg",
+            "images/laptops/hp-probook-640-g8-srebrny-3.jpg"
+          ],
           desc: "HP ProBook 640 G8 — практичний і витончений робочий ноутбук у срібному корпусі.",
         },
         {
@@ -784,6 +974,11 @@ export const laptops = [
           battery: "10 годин",
           badge: "hot",
           emoji: "💻",
+          images: [
+            "images/laptops/lenovo-thinkpad-e490-1.jpg",
+            "images/laptops/lenovo-thinkpad-e490-2.jpg",
+            "images/laptops/lenovo-thinkpad-e490-3.jpg"
+          ],
           desc: "ThinkPad E490 з i7 та Radeon 550X — продуктивний ноутбук для мультимедіа й роботи.",
         },
         {
@@ -802,6 +997,11 @@ export const laptops = [
           battery: "11 годин",
           badge: "hot",
           emoji: "🍎",
+          images: [
+            "images/laptops/apple-macbook-pro-16-i9-1.jpg",
+            "images/laptops/apple-macbook-pro-16-i9-2.jpg",
+            "images/laptops/apple-macbook-pro-16-i9-3.jpg"
+          ],
           desc: 'Флагманський MacBook Pro 16" з Core i9 та Radeon 5500M для професіоналів відео і графіки.',
         },
         {
@@ -820,6 +1020,11 @@ export const laptops = [
           battery: "11 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/hp-probook-640-g8-i5-1.jpg",
+            "images/laptops/hp-probook-640-g8-i5-2.jpg",
+            "images/laptops/hp-probook-640-g8-i5-3.jpg"
+          ],
           desc: "HP ProBook 640 G8 — сучасний тонкий ноутбук для офісу з процесором Intel 11‑го покоління.",
         },
         {
@@ -838,6 +1043,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "🍏",
+          images: [
+            "images/laptops/apple-macbook-pro-15-2019-1.jpg",
+            "images/laptops/apple-macbook-pro-15-2019-2.jpg",
+            "images/laptops/apple-macbook-pro-15-2019-3.jpg"
+          ],
           desc: 'MacBook Pro 15" 2019 — класика Apple для творців контенту та професіоналів.',
         },
         {
@@ -856,6 +1066,11 @@ export const laptops = [
           battery: "7 годин",
           badge: null,
           emoji: "💻",
+          images: [
+            "images/laptops/dell-latitude-7280-touch-i5-1.jpg",
+            "images/laptops/dell-latitude-7280-touch-i5-2.jpg",
+            "images/laptops/dell-latitude-7280-touch-i5-3.jpg"
+          ],
           desc: "Dell Latitude 7280 зі сенсорним дисплеєм — портативний помічник для бізнес‑користувачів.",
         },
         {
@@ -874,6 +1089,11 @@ export const laptops = [
           battery: "11 годин",
           badge: "new",
           emoji: "💼",
+          images: [
+            "images/laptops/hp-elitebook-830-g88-1.jpg",
+            "images/laptops/hp-elitebook-830-g88-2.jpg",
+            "images/laptops/hp-elitebook-830-g88-3.jpg"
+          ],
           desc: "HP EliteBook 830 G8 — легкий бізнес‑ультрабук із новим CPU та довгою автономністю.",
         },
         {
@@ -892,6 +1112,11 @@ export const laptops = [
           battery: "12 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/hp-elitebook-645-g9-1.jpg",
+            "images/laptops/hp-elitebook-645-g9-2.jpg",
+            "images/laptops/hp-elitebook-645-g9-3.jpg"
+          ],
           desc: "HP EliteBook 645 G9 з Ryzen 5 — швидкий і ефективний ноутбук для професіоналів.",
         },
         {
@@ -910,6 +1135,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "🧳",
+          images: [
+            "images/laptops/lenovo-thinkpad-e490-i5-1.jpg",
+            "images/laptops/lenovo-thinkpad-e490-i5-2.jpg",
+            "images/laptops/lenovo-thinkpad-e490-i5-3.jpg"
+          ],
           desc: "Lenovo ThinkPad E490 — міцний та зручний у роботі ноутбук для бізнесу й навчання.",
         },
         {
@@ -928,6 +1158,11 @@ export const laptops = [
           battery: "11 годин",
           badge: "hot",
           emoji: "🍏",
+          images: [
+            "images/laptops/apple-macbook-pro-16-i9-32gb-1.jpg",
+            "images/laptops/apple-macbook-pro-16-i9-32gb-2.jpg",
+            "images/laptops/apple-macbook-pro-16-i9-32gb-3.jpg"
+          ],
           desc: 'MacBook Pro 16" (2019) на Intel Core i9 — професійна модель для редакторів і дизайнерів.',
         },
         {
@@ -946,6 +1181,11 @@ export const laptops = [
           battery: "11 годин",
           badge: "hot",
           emoji: "🍎",
+          images: [
+            "images/laptops/apple-macbook-pro-16-i9-radeon-1.jpg",
+            "images/laptops/apple-macbook-pro-16-i9-radeon-2.jpg",
+            "images/laptops/apple-macbook-pro-16-i9-radeon-3.jpg"
+          ],
           desc: 'Ігрово‑робоча станція MacBook Pro 16" з i9 і Radeon Pro — потужність у класичному дизайні Apple.',
         },
         {
@@ -964,6 +1204,11 @@ export const laptops = [
           battery: "12 годин",
           badge: null,
           emoji: "💼",
+          images: [
+            "images/laptops/dell-latitude-5420-1.jpg",
+            "images/laptops/dell-latitude-5420-2.jpg",
+            "images/laptops/dell-latitude-5420-3.jpg"
+          ],
           desc: "Dell Latitude 5420 — ефективний та легкий бізнес‑ноутбук із Core i7 та батареєю на цілий день.",
         },
         {
@@ -982,6 +1227,11 @@ export const laptops = [
           battery: "10 годин",
           badge: null,
           emoji: "🍎",
+          images: [
+            "images/laptops/apple-macbook-pro-15-2019-32gb-1.jpg",
+            "images/laptops/apple-macbook-pro-15-2019-32gb-2.jpg",
+            "images/laptops/apple-macbook-pro-15-2019-32gb-3.jpg"
+          ],
           desc: 'MacBook Pro 15" (2019) із 32 ГБ RAM та Radeon Pro — універсальний інструмент для творчих профі.',
         },
         {
@@ -1000,6 +1250,11 @@ export const laptops = [
           battery: "8 годин",
           badge: null,
           emoji: "🧠",
+          images: [
+            "images/laptops/dell-precision-3541-1.jpg",
+            "images/laptops/dell-precision-3541-2.jpg",
+            "images/laptops/dell-precision-3541-3.jpg"
+          ],
           desc: "Dell Precision 3541 — мобільна робоча станція для CAD та графічних додатків.",
         },
         {
@@ -1018,6 +1273,11 @@ export const laptops = [
           battery: "8 годин",
           badge: "hot",
           emoji: "🧠",
+          images: [
+            "images/laptops/dell-precision-3541-quadro-1.jpg",
+            "images/laptops/dell-precision-3541-quadro-2.jpg",
+            "images/laptops/dell-precision-3541-quadro-3.jpg"
+          ],
           desc: "Dell Precision 3541 з графікою Quadro — ідеальний для інженерів та дизайнерів, що цінують надійність.",
         },
 ];
