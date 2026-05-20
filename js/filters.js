@@ -14,10 +14,26 @@ const categoryLabels = {
   en: { gaming: "Gaming", ultrabooks: "Ultrabooks", business: "Business", office: "Office", professional: "Professional", multimedia: "Multimedia" },
 };
 
+const categoryLookup = Object.entries(categoryLabels).reduce((lookup, [, labels]) => {
+  Object.entries(labels).forEach(([key, label]) => {
+    lookup[key.toLowerCase()] = key;
+    lookup[label.toLowerCase()] = key;
+  });
+  return lookup;
+}, {});
+
+function normalizeCategory(value) {
+  if (!value || typeof value !== "string") return value;
+  return categoryLookup[value.toLowerCase()] || value;
+}
+
 // --- Побудова списків фільтрів у сайдбарі ---
 export function buildFilters() {
   renderCheckList("brandFilters", getUnique("brand", laptops), state.brands, "brand");
-  renderCheckList("categoryFilters", getUnique("category", laptops), state.categories, "category");
+  const categories = [...new Set(laptops.map((l) => normalizeCategory(l.category)))]
+    .filter(Boolean)
+    .sort();
+  renderCheckList("categoryFilters", categories, state.categories, "category");
   renderCheckList("ramFilters", getUnique("ram", laptops), state.rams, "ram");
   renderCheckList("screenFilters", getUnique("screen", laptops), state.screens, "screen");
   renderCheckList("gpuFilters", ["NVIDIA", "AMD", "Intel", "Apple"], state.gpus, "gpu");
@@ -32,19 +48,22 @@ function renderCheckList(containerId, items, stateSet, field) {
     .map(
       (item) => {
         // Отримуємо переведену назву категорії, якщо це категорія
-        let displayLabel = item;
-        if (field === "category" && categoryLabels[lang] && categoryLabels[lang][item]) {
-          displayLabel = categoryLabels[lang][item];
+        const canonicalItem = field === "category" ? normalizeCategory(item) : item;
+        let displayLabel = canonicalItem;
+        if (field === "category" && categoryLabels[lang] && categoryLabels[lang][canonicalItem]) {
+          displayLabel = categoryLabels[lang][canonicalItem];
         }
         
         return `
         <label class="check-item">
-          <input type="checkbox" value="${item}" ${stateSet.has(item) ? "checked" : ""}/>
-          <span class="check-box">${stateSet.has(item) ? "✓" : ""}</span>
+          <input type="checkbox" value="${canonicalItem}" ${stateSet.has(canonicalItem) ? "checked" : ""}/>
+          <span class="check-box">${stateSet.has(canonicalItem) ? "✓" : ""}</span>
           <span class="check-label">${displayLabel}</span>
           <span class="check-count">${
             field === "gpu"
               ? laptops.filter((l) => l.gpu.toLowerCase().includes(item.toLowerCase())).length
+              : field === "category"
+              ? laptops.filter((l) => normalizeCategory(l.category) === canonicalItem).length
               : countByKey(field, item, laptops)
           }</span>
         </label>
@@ -82,7 +101,7 @@ export function applyFilters() {
 
   // Фільтрація
   if (state.brands.size) list = list.filter((l) => state.brands.has(l.brand));
-  if (state.categories.size) list = list.filter((l) => state.categories.has(l.category));
+  if (state.categories.size) list = list.filter((l) => state.categories.has(normalizeCategory(l.category)));
   if (state.rams.size) list = list.filter((l) => state.rams.has(l.ram));
   if (state.screens.size) list = list.filter((l) => state.screens.has(l.screen));
   if (state.gpus.size)
