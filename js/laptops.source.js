@@ -1036,7 +1036,7 @@ export const laptops = [
           brand: "Lenovo",
           name: 'ThinkPad E14 Gen2 i3‑1115G4 16GB 256GB SSD 14" FHD',
           category: "Офісні",
-          price: 0, // PLN
+          price: 1049.99, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i3‑1115G4",
