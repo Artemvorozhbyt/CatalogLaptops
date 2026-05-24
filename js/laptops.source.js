@@ -1063,7 +1063,7 @@ export const laptops = [
           brand: "Lenovo",
           name: 'ThinkPad T14 Gen1 14" Ryzen 5 4650U 16GB 256GB SSD',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 899, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "AMD Ryzen 5 4650U (6C/12T)",
@@ -1090,7 +1090,7 @@ export const laptops = [
           brand: "Lenovo",
           name: 'ThinkPad T14 Gen1 14" i5‑10310U 16GB 256GB SSD Intel HD',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 1046.99, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i5‑10310U",
@@ -1117,7 +1117,7 @@ export const laptops = [
           brand: "Dell",
           name: 'Latitude 3420 i3‑1115G4 16GB 256GB SSD 14" HD Intel HD',
           category: "Офісні",
-          price: 0, // PLN
+          price: 849.99, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i3‑1115G4",
@@ -1144,7 +1144,7 @@ export const laptops = [
           brand: "HP",
           name: 'EliteBook 830 G8 13.3" i5‑1135G7 16GB 256GB SSD',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 1196, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i5‑1135G7",
@@ -1175,7 +1175,7 @@ export const laptops = [
           brand: "Lenovo",
           name: 'ThinkPad L490 14" i5‑8265U 16GB 256GB SSD Laptop',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 999, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i5‑8265U",
@@ -1202,7 +1202,7 @@ export const laptops = [
           brand: "HP",
           name: 'ProBook 640 G8 14" i5‑8250U 16GB 256GB SSD Srebrny',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 999, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i5‑8250U",
@@ -1233,7 +1233,7 @@ export const laptops = [
           brand: "Lenovo",
           name: 'ThinkPad E490 14" i7‑8565U 16GB 256GB SSD Radeon 550X',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 1697, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i7‑8565U",
@@ -1264,7 +1264,7 @@ export const laptops = [
           brand: "Apple",
           name: 'MacBook Pro 16" A2141 2019 i9‑9980HK 32GB 512GB SSD',
           category: "Професійні",
-          price: 0, // PLN
+          price: 2299, // PLN
           ram: "32 GB",
           storage: "512 GB SSD",
           cpu: "Intel Core i9‑9980HK (8C/16T, до 5 GHz)",
@@ -1291,7 +1291,7 @@ export const laptops = [
           brand: "HP",
           name: 'ProBook 640 G8 14" i5‑1135G7 16GB 256GB SSD Windows Pro',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 999, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i5‑1135G7",
@@ -1318,7 +1318,7 @@ export const laptops = [
           brand: "Apple",
           name: 'MacBook Pro A1990 15.4" 2019 i9‑9880H 32GB 512GB SSD',
           category: "Професійні",
-          price: 0, // PLN
+          price: 2399, // PLN
           ram: "32 GB",
           storage: "512 GB SSD",
           cpu: "Intel Core i9‑9880H (8C/16T)",
@@ -1345,7 +1345,7 @@ export const laptops = [
           brand: "Dell",
           name: 'Latitude 7280 Touch i5‑6300U 8GB 256GB SSD 12.5"',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 699, // PLN
           ram: "8 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i5‑6300U",
@@ -1372,7 +1372,7 @@ export const laptops = [
           brand: "HP",
           name: 'EliteBook 830 G8 i5‑1135G7 16GB 256GB SSD 13.3"',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 1096, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i5‑1135G7",
@@ -1399,7 +1399,7 @@ export const laptops = [
           brand: "HP",
           name: 'EliteBook 645 G9 14" Ryzen 5 5625U 16GB 256GB SSD Radeon',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 1600, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "AMD Ryzen 5 5625U",
@@ -1426,7 +1426,7 @@ export const laptops = [
           brand: "Lenovo",
           name: 'ThinkPad E490 14" i5‑8265U 16GB 256GB SSD Czarny',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 1697, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i5‑8265U",
@@ -1453,7 +1453,7 @@ export const laptops = [
           brand: "Apple",
           name: "MacBook Pro A2141 2019 i9‑9980HK 32 GB 512 GB",
           category: "Професійні",
-          price: 0, // PLN
+          price: 2299, // PLN
           ram: "32 GB",
           storage: "512 GB SSD",
           cpu: "Intel Core i9‑9980HK",
@@ -1480,7 +1480,7 @@ export const laptops = [
           brand: "Apple",
           name: 'MacBook Pro A2141 16" 2019 i9‑9980HK 32GB 512GB SSD',
           category: "Професійні",
-          price: 0, // PLN
+          price: 2299, // PLN
           ram: "32 GB",
           storage: "512 GB SSD",
           cpu: "Intel Core i9‑9980HK",
@@ -1507,7 +1507,7 @@ export const laptops = [
           brand: "Dell",
           name: 'Latitude 5420 14" HD i7‑1185G7 16GB 256GB SSD Intel HD',
           category: "Бізнес",
-          price: 0, // PLN
+          price: 1199.99, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i7‑1185G7",
@@ -1534,7 +1534,7 @@ export const laptops = [
           brand: "Apple",
           name: 'MacBook Pro 15.4" A1990 2019 i9 32GB 512GB SSD',
           category: "Професійні",
-          price: 0, // PLN
+          price: 2499, // PLN
           ram: "32 GB",
           storage: "512 GB SSD",
           cpu: "Intel Core i9‑9980H",
@@ -1561,7 +1561,7 @@ export const laptops = [
           brand: "Dell",
           name: 'Precision 3541 15.6" i7‑9850H 16GB 256GB SSD Czarny',
           category: "Професійні",
-          price: 0, // PLN
+          price: 2099, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i7‑9850H (6C/12T)",
@@ -1588,7 +1588,7 @@ export const laptops = [
           brand: "Dell",
           name: 'Precision 3541 15.6" FHD i7‑9850H 16GB 256GB SSD Quadro',
           category: "Професійні",
-          price: 0, // PLN
+          price: 1999.99, // PLN
           ram: "16 GB",
           storage: "256 GB SSD",
           cpu: "Intel Core i7‑9850H",
