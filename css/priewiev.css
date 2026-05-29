@@ -1,0 +1,1119 @@
+/* css/preview.css */
+
+/* NAV стилі перенесено в layout.css, якщо вони уніфіковані.
+   Якщо для прев'ю потрібен інший .xnav, залиште їх тут.
+   Я вважаю, що вони однакові, тому прибираю їх звідси.
+   Те саме стосується .xlogo, .xnav-links, .xnav-link тощо. */
+
+/* HERO */
+.xhero {
+  min-height: calc(100vh - 58px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 3rem 2.5rem 2rem;
+  overflow: hidden;
+}
+
+.xcanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Decorative bg rings */
+.xring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(124, 58, 237, 0.08); /* Використовуй var(--accent) */
+  pointer-events: none;
+  z-index: 1;
+  animation: xRingSpin 40s linear infinite;
+}
+
+.xring1 {
+  width: 700px;
+  height: 700px;
+  top: 50%;
+  right: -5%;
+  transform: translateY(-50%);
+}
+
+.xring2 {
+  width: 520px;
+  height: 520px;
+  top: 50%;
+  right: 3%;
+  transform: translateY(-50%);
+  animation-duration: 28s;
+  animation-direction: reverse;
+  border-color: rgba(124, 58, 237, 0.05); /* Використовуй var(--accent) */
+}
+
+.xring3 {
+  width: 340px;
+  height: 340px;
+  top: 50%;
+  right: 11%;
+  transform: translateY(-50%);
+  border-style: dashed;
+  border-color: rgba(124, 58, 237, 0.07); /* Використовуй var(--accent) */
+  animation-duration: 18s;
+}
+
+@keyframes xRingSpin {
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+.xring-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #7c3aed; /* Використовуй var(--accent) */
+  border-radius: 50%;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 16px rgba(124, 58, 237, 0.9), /* Використовуй var(--accent) */
+    0 0 40px rgba(124, 58, 237, 0.3); /* Використовуй var(--accent) */
+}
+
+.xring-dot2 {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background: #a78bfa; /* Можна додати як змінну */
+  border-radius: 50%;
+  bottom: 15%;
+  right: -2px;
+  box-shadow: 0 0 10px rgba(167, 139, 250, 0.8); /* Можна додати як змінну */
+}
+
+/* GRID */
+.xgrid {
+  position: relative;
+  z-index: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  max-width: 1180px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* LEFT */
+.xleft {
+  display: flex;
+  flex-direction: column;
+}
+
+.xtag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(124, 58, 237, 0.1); /* Використовуй var(--accent) */
+  border: 1px solid rgba(124, 58, 237, 0.25); /* Використовуй var(--accent) */
+  color: #c4b5fd; /* Можна додати як змінну */
+  padding: 5px 14px 5px 8px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  width: fit-content;
+  animation: xFUp 0.7s ease both;
+}
+
+.xtag-pulse {
+  width: 22px;
+  height: 22px;
+  background: rgba(124, 58, 237, 0.18); /* Використовуй var(--accent) */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xtag-pulse::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: #8b5cf6; /* Використовуй var(--accent2) */
+  border-radius: 50%;
+  display: block;
+  animation: xPulse 2s ease-in-out infinite;
+}
+
+@keyframes xPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.6); /* Використовуй var(--accent2) */
+  }
+
+  50% {
+    box-shadow: 0 0 0 6px rgba(139, 92, 246, 0); /* Використовуй var(--accent2) */
+  }
+}
+
+.xh1 {
+  font-size: clamp(36px, 4.6vw, 60px);
+  font-weight: 900;
+  line-height: 1.03;
+  letter-spacing: -2.5px;
+  margin-bottom: 1.2rem;
+  animation: xFUp 0.7s 0.1s ease both;
+  color: #fff; /* Використовуй var(--text) */
+}
+
+.xh1-color {
+  color: #8b5cf6; /* Використовуй var(--accent2) */
+  display: block;
+  position: relative;
+  width: fit-content;
+}
+
+.xh1-color::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #7c3aed 0%, rgba(124, 58, 237, 0) 100%); /* Використовуй var(--accent) */
+  border-radius: 2px;
+  animation: xLineGrow 0.9s 0.75s ease both;
+  transform-origin: left;
+}
+
+@keyframes xLineGrow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.xh1-ghost {
+  -webkit-text-stroke: 1.8px rgba(255, 255, 255, 0.2); /* Використовуй var(--text) */
+  color: transparent;
+  display: block;
+}
+
+.xsub {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.38); /* Використовуй var(--muted) */
+  line-height: 1.75;
+  margin-bottom: 1.8rem;
+  max-width: 400px;
+  animation: xFUp 0.7s 0.2s ease both;
+}
+
+.xsub strong {
+  color: rgba(255, 255, 255, 0.72); /* Можна додати як змінну */
+  font-weight: 600;
+}
+
+/* TYPEWRITER search */
+.xsearch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.035); /* Використовуй var(--surface2) */
+  border: 1px solid rgba(255, 255, 255, 0.09); /* Використовуй var(--border) */
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 1.8rem;
+  animation: xFUp 0.7s 0.22s ease both;
+  max-width: 440px;
+  transition:
+    border-color 0.25s,
+    background 0.25s;
+}
+
+.xsearch:focus-within,
+.xsearch:hover {
+  border-color: rgba(124, 58, 237, 0.45); /* Використовуй var(--accent) */
+  background: rgba(124, 58, 237, 0.04); /* Використовуй var(--accent) */
+}
+
+.xsearch-icon {
+  flex-shrink: 0;
+  opacity: 0.3;
+  color: #fff; /* Використовуй var(--text) */
+}
+
+.xsearch input {
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff; /* Використовуй var(--text) */
+  font-size: 13px;
+  flex: 1;
+  font-family: inherit;
+  caret-color: #7c3aed; /* Використовуй var(--accent) */
+}
+
+.xsearch input::placeholder {
+  color: rgba(255, 255, 255, 0.2); /* Використовуй var(--muted) */
+}
+
+.xsearch-btn {
+  background: #7c3aed; /* Використовуй var(--accent) */
+  color: #fff; /* Використовуй var(--text) */
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.xsearch-btn:hover {
+  background: #6d28d9; /* Слід додати змінну або обчислити на основі var(--accent) */
+}
+
+.xsearch-tags {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  border-left: 1px solid rgba(255, 255, 255, 0.08); /* Використовуй var(--border) */
+  padding-left: 10px;
+  flex-shrink: 0;
+}
+
+.xstag {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.3); /* Використовуй var(--muted) */
+  background: rgba(255, 255, 255, 0.04); /* Використовуй var(--tag-bg) */
+  border: 1px solid rgba(255, 255, 255, 0.07); /* Використовуй var(--border) */
+  border-radius: 5px;
+  padding: 2px 7px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.xstag:hover {
+  color: #c4b5fd; /* Можна додати як змінну */
+  border-color: rgba(124, 58, 237, 0.3); /* Використовуй var(--accent) */
+}
+
+/* STATS */
+.xstats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 2rem;
+  animation: xFUp 0.7s 0.3s ease both;
+}
+
+.xst {
+  padding: 0 1.3rem;
+}
+
+.xst:first-child {
+  padding-left: 0;
+}
+
+.xst:last-child {
+  padding-right: 0;
+}
+
+.xst-div {
+  width: 1px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.08); /* Використовуй var(--border) */
+  flex-shrink: 0;
+}
+
+.xstn {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  line-height: 1;
+  color: #fff; /* Використовуй var(--text) */
+}
+
+.xstn em {
+  color: #7c3aed; /* Використовуй var(--accent) */
+  font-style: normal;
+  font-size: 18px;
+}
+
+.xstl {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.26); /* Використовуй var(--muted) */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+/* TRUST ROW */
+.xtrust {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 1.8rem;
+  animation: xFUp 0.7s 0.32s ease both;
+}
+
+.xtrust-avatars {
+  display: flex;
+}
+
+.xav {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #05050f; /* Використовуй var(--background) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff; /* Використовуй var(--text) */
+  margin-left: -8px;
+  flex-shrink: 0;
+}
+
+.xav:first-child {
+  margin-left: 0;
+}
+
+.xtrust-text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.35); /* Використовуй var(--muted) */
+}
+
+.xtrust-text strong {
+  color: rgba(255, 255, 255, 0.65); /* Можна додати як змінну */
+  font-weight: 600;
+}
+
+.xstars {
+  color: #f59e0b; /* Можна додати як змінну */
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* CTA */
+.xcta {
+  display: flex;
+  gap: 10px;
+  animation: xFUp 0.7s 0.4s ease both;
+}
+
+.xbtn-p {
+  background: #7c3aed; /* Використовуй var(--accent) */
+  color: #fff; /* Використовуй var(--text) */
+  border: none;
+  padding: 13px 22px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s;
+  font-family: inherit;
+  position: relative;
+  overflow: hidden;
+}
+
+.xbtn-p::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 60%); /* Використовуй var(--text) */
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.xbtn-p:hover::after {
+  opacity: 1;
+}
+
+.xbtn-p:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(124, 58, 237, 0.38); /* Використовуй var(--accent) */
+}
+
+.xbtn-g {
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6); /* Використовуй var(--text) */
+  border: 1px solid rgba(255, 255, 255, 0.12); /* Використовуй var(--border) */
+  padding: 13px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+  font-family: inherit;
+}
+
+.xbtn-g:hover {
+  border-color: rgba(255, 255, 255, 0.28); /* Використовуй var(--border) */
+  color: #fff; /* Використовуй var(--text) */
+  transform: translateY(-2px);
+}
+
+/* RIGHT */
+.xright {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: xFUp 0.7s 0.35s ease both;
+  position: relative;
+}
+
+/* LAPTOP STAGE */
+.xlaptop-stage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.xlaptop-float {
+  animation: xLaptopFloat 5.5s ease-in-out infinite;
+  filter: drop-shadow(0 24px 48px rgba(124, 58, 237, 0.2)) drop-shadow(0 0 80px rgba(124, 58, 237, 0.07)); /* Використовуй var(--accent) */
+}
+
+@keyframes xLaptopFloat {
+
+  0%,
+  100% {
+    transform: rotateX(8deg) rotateY(-14deg) translateY(0);
+  }
+
+  50% {
+    transform: rotateX(8deg) rotateY(14deg) translateY(-18px);
+  }
+}
+
+.xlaptop-shadow {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(ellipse, rgba(124, 58, 237, 0.4) 0%, transparent 70%); /* Використовуй var(--accent) */
+  filter: blur(12px);
+  animation: xShadow 5.5s ease-in-out infinite;
+}
+
+@keyframes xShadow {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: translateX(-50%) scaleX(1.22);
+  }
+}
+
+/* Floating spec chips */
+.xchip {
+  position: absolute;
+  background: rgba(8, 8, 24, 0.85); /* Використовуй var(--surface) */
+  border: 1px solid rgba(255, 255, 255, 0.1); /* Використовуй var(--border) */
+  border-radius: 9px;
+  padding: 7px 11px;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7); /* Використовуй var(--text) */
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  transition: all 0.3s;
+}
+
+.xchip:hover {
+  border-color: rgba(124, 58, 237, 0.4); /* Використовуй var(--accent) */
+  color: #fff; /* Використовуй var(--text) */
+  transform: scale(1.05) !important;
+}
+
+.xchip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.xchip-val {
+  font-weight: 800;
+  color: #fff; /* Використовуй var(--text) */
+  font-size: 12px;
+}
+
+.chipA {
+  top: 6%;
+  left: -8%;
+  animation: xChip 4.2s 0s ease-in-out infinite;
+}
+
+.chipB {
+  top: 28%;
+  right: -8%;
+  animation: xChip 4.2s 0.7s ease-in-out infinite;
+}
+
+.chipC {
+  bottom: 22%;
+  left: -6%;
+  animation: xChip 4.2s 1.5s ease-in-out infinite;
+}
+
+.chipD {
+  bottom: 35%;
+  right: -4%;
+  animation: xChip 4.2s 2.2s ease-in-out infinite;
+}
+
+@keyframes xChip {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+/* LIVE stats panel inside laptop */
+.xlive-bar {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 280px;
+  background: rgba(8, 8, 22, 0.95); /* Використовуй var(--surface) */
+  border: 1px solid rgba(124, 58, 237, 0.2); /* Використовуй var(--accent) */
+  border-radius: 8px;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 15;
+  backdrop-filter: blur(8px);
+}
+
+.xlive-item {
+  text-align: center;
+}
+
+.xlive-val {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff; /* Використовуй var(--text) */
+  letter-spacing: -0.5px;
+}
+
+.xlive-lbl {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.3); /* Використовуй var(--muted) */
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-top: 1px;
+}
+
+.xlive-dot {
+  width: 5px;
+  height: 5px;
+  background: #10b981; /* Можна додати як змінну */
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 4px;
+  animation: xPulse 1.5s ease-in-out infinite;
+  vertical-align: middle;
+}
+
+/* CATEGORY CARDS */
+.xcats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.xcat {
+  background: rgba(255, 255, 255, 0.025); /* Використовуй var(--surface) */
+  border: 1px solid rgba(255, 255, 255, 0.065); /* Використовуй var(--border) */
+  border-radius: 13px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  cursor: pointer;
+  transition: all 0.28s;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.xcat::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-radius: 0;
+  transition: width 0.3s;
+}
+
+.xcat:hover::before {
+  width: 3px;
+}
+
+.xc1::before {
+  background: #7c3aed; /* Використовуй var(--accent) */
+}
+
+.xc2::before {
+  background: #06b6d4; /* Можна додати як змінну */
+}
+
+.xc3::before {
+  background: #f59e0b; /* Можна додати як змінну */
+}
+
+.xc4::before {
+  background: #10b981; /* Можна додати як змінну */
+}
+
+.xc1:hover {
+  background: rgba(124, 58, 237, 0.08); /* Використовуй var(--accent) */
+  border-color: rgba(124, 58, 237, 0.28); /* Використовуй var(--accent) */
+  box-shadow: 0 8px 24px rgba(124, 58, 237, 0.1); /* Використовуй var(--accent) */
+}
+
+.xc2:hover {
+  background: rgba(6, 182, 212, 0.07); /* Можна додати як змінну */
+  border-color: rgba(6, 182, 212, 0.25); /* Можна додати як змінну */
+  box-shadow: 0 8px 24px rgba(6, 182, 212, 0.08); /* Можна додати як змінну */
+}
+
+.xc3:hover {
+  background: rgba(245, 158, 11, 0.07); /* Можна додати як змінну */
+  border-color: rgba(245, 158, 11, 0.25); /* Можна додати як змінну */
+  box-shadow: 0 8px 24px rgba(245, 158, 11, 0.08); /* Можна додати як змінну */
+}
+
+.xc4:hover {
+  background: rgba(16, 185, 129, 0.07); /* Можна додати як змінну */
+  border-color: rgba(16, 185, 129, 0.25); /* Можна додати як змінну */
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.08); /* Можна додати як змінну */
+}
+
+.xcat-ic {
+  width: 37px;
+  height: 37px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  flex-shrink: 0;
+  transition: transform 0.28s;
+}
+
+.xcat:hover .xcat-ic {
+  transform: scale(1.18) rotate(-8deg);
+}
+
+.xci1 {
+  background: rgba(124, 58, 237, 0.15); /* Використовуй var(--accent) */
+}
+
+.xci2 {
+  background: rgba(6, 182, 212, 0.12); /* Можна додати як змінну */
+}
+
+.xci3 {
+  background: rgba(245, 158, 11, 0.12); /* Можна додати як змінну */
+}
+
+.xci4 {
+  background: rgba(16, 185, 129, 0.12); /* Можна додати як змінну */
+}
+
+.xcat-t {
+  font-size: 13px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85); /* Використовуй var(--text) */
+  margin-bottom: 2px;
+}
+
+.xcat-s {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.28); /* Використовуй var(--muted) */
+}
+
+.xcat-txt {
+  flex: 1;
+}
+
+.xpill {
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 100px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  flex-shrink: 0;
+}
+
+.pp1 {
+  background: rgba(239, 68, 68, 0.14); /* Використовуй var(--red) */
+  color: #fca5a5; /* Можна додати як змінну */
+  border: 1px solid rgba(239, 68, 68, 0.22); /* Використовуй var(--red) */
+}
+
+.pp2 {
+  background: rgba(16, 185, 129, 0.11); /* Можна додати як змінну */
+  color: #6ee7b7; /* Можна додати як змінну */
+  border: 1px solid rgba(16, 185, 129, 0.18); /* Можна додати як змінну */
+}
+
+.pp3 {
+  background: rgba(245, 158, 11, 0.11); /* Можна додати як змінну */
+  color: #fcd34d; /* Можна додати як змінну */
+  border: 1px solid rgba(245, 158, 11, 0.18); /* Можна додати як змінну */
+}
+
+.pp4 {
+  background: rgba(99, 102, 241, 0.11); /* Можна додати як змінну */
+  color: #a5b4fc; /* Можна додати як змінну */
+  border: 1px solid rgba(99, 102, 241, 0.18); /* Можна додати як змінну */
+}
+
+/* BRAND MARQUEE */
+.xmarquee-wrap {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1180px;
+  margin: 2rem auto 0;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+}
+
+.xmarquee-inner {
+  display: flex;
+  gap: 0;
+  width: max-content;
+  animation: xMarquee 20s linear infinite;
+}
+
+.xmarquee-inner:hover {
+  animation-play-state: paused;
+}
+
+.xbrand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.05); /* Використовуй var(--border) */
+  opacity: 0.25;
+  transition: opacity 0.3s;
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.xbrand:hover {
+  opacity: 0.6;
+}
+
+.xbrand-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff; /* Використовуй var(--text) */
+  letter-spacing: -0.5px;
+}
+
+.xbrand-count {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4); /* Використовуй var(--muted) */
+  font-weight: 600;
+}
+
+@keyframes xMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* FEATURES BAR */
+.xfeats {
+  position: relative;
+  z-index: 5;
+  max-width: 1180px;
+  width: 100%;
+  margin: 1.5rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  animation: xFUp 0.7s 0.6s ease both;
+}
+
+.xfeat {
+  background: rgba(255, 255, 255, 0.02); /* Використовуй var(--surface) */
+  border: 1px solid rgba(255, 255, 255, 0.05); /* Використовуй var(--border) */
+  border-radius: 11px;
+  padding: 13px 15px;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  transition: all 0.28s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.xfeat::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.4), transparent); /* Використовуй var(--accent) */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.xfeat:hover {
+  background: rgba(124, 58, 237, 0.06); /* Використовуй var(--accent) */
+  border-color: rgba(124, 58, 237, 0.18); /* Використовуй var(--accent) */
+  transform: translateY(-3px);
+}
+
+.xfeat:hover::after {
+  opacity: 1;
+}
+
+.xfeat-ico {
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: transform 0.28s;
+}
+
+.xfeat:hover .xfeat-ico {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+.xfeat-t {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.72); /* Використовуй var(--text) */
+}
+
+.xfeat-s {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.26); /* Використовуй var(--muted) */
+  margin-top: 2px;
+}
+
+/* SCROLL INDICATOR */
+.xscroll {
+  position: absolute;
+  bottom: 1.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: xFIn 1s 1.3s ease both;
+  cursor: pointer;
+}
+
+.xscroll-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.18); /* Використовуй var(--muted) */
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.xscroll-mouse {
+  width: 21px;
+  height: 33px;
+  border: 1.5px solid rgba(255, 255, 255, 0.13); /* Використовуй var(--border) */
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.xscroll-w {
+  width: 2.5px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3); /* Використовуй var(--text) */
+  border-radius: 2px;
+  animation: xScrollW 2s ease-in-out infinite;
+}
+
+@keyframes xScrollW {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  80% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+
+@keyframes xFUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes xFIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* TYPING CURSOR */
+.xcursor {
+  display: inline-block;
+  width: 1.5px;
+  height: 13px;
+  background: #7c3aed; /* Використовуй var(--accent) */
+  margin-left: 1px;
+  vertical-align: middle;
+  animation: xBlink 0.85s step-end infinite;
+}
+
+@keyframes xBlink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 980px) {
+  .xgrid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .xleft {
+    align-items: center;
+  }
+
+  .xsub,
+  .xsearch {
+    max-width: 100%;
+  }
+
+  .xstats {
+    justify-content: center;
+  }
+
+  .xtrust {
+    justify-content: center;
+  }
+
+  .xcta {
+    justify-content: center;
+  }
+
+  .xfeats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .xring1,
+  .xring2,
+  .xring3 {
+    display: none;
+  }
+
+  .xchip.chipA,
+  .xchip.chipB,
+  .xchip.chipC,
+  .xchip.chipD {
+    display: none;
+  }
+}
+
+@media (max-width: 540px) {
+  .xcats {
+    grid-template-columns: 1fr;
+  }
+
+  .xfeats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .xnav-links {
+    display: none;
+  }
+
+  .xmarquee-wrap {
+    display: none;
+  }
+}

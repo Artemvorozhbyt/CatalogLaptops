@@ -155,6 +155,7 @@ export function renderPagination(pages) {
   const wrap = $("pagination");
   if (pages <= 1) {
     wrap.innerHTML = "";
+    syncSidebarHeight();
     return;
   }
 
@@ -189,6 +190,38 @@ export function renderPagination(pages) {
     state.page++;
     renderCatalog();
     window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  syncSidebarHeight();
+}
+
+let sidebarResizeBound = false;
+
+function syncSidebarHeight() {
+  const sidebar = $("sidebar");
+  const main = sidebar?.closest(".page")?.querySelector("main");
+  const pagination = $("pagination");
+
+  if (!sidebar || !main || !pagination) return;
+
+  if (!sidebarResizeBound) {
+    sidebarResizeBound = true;
+    window.addEventListener("resize", () => requestAnimationFrame(syncSidebarHeight));
+  }
+
+  if (window.matchMedia("(max-width: 900px)").matches) {
+    sidebar.style.height = "";
+    return;
+  }
+
+  requestAnimationFrame(() => {
+    const mainRect = main.getBoundingClientRect();
+    const paginationRect = pagination.getBoundingClientRect();
+    const targetHeight = Math.ceil(paginationRect.bottom - mainRect.top);
+
+    if (targetHeight > 0) {
+      sidebar.style.height = `${targetHeight}px`;
+    }
   });
 }
 

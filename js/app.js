@@ -7,9 +7,14 @@ import { buildFilters } from "./filters.js";
 import { updateLanguage } from "./utils.js";
 
 window.addEventListener("DOMContentLoaded", () => {
-  buildFilters(laptops, state);
-  renderAll();
-  setupInteractivity();
-  initModals();
+  // If this page contains the catalog container, initialize catalog features.
+  if (document.getElementById("catalog")) {
+    buildFilters(laptops, state);
+    renderAll();
+    setupInteractivity();
+    initModals();
+  }
+
+  // Always update UI language texts where present
   updateLanguage(); // Оновимо мову при завантаженні
 });

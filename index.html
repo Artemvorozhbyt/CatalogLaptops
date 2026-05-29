@@ -10,129 +10,962 @@
     <link rel="stylesheet" href="css/layout.css" />
     <link rel="stylesheet" href="css/components.css" />
     <link rel="stylesheet" href="css/responsive.css" />
+    <link rel="stylesheet" href="css/preview.css" />
+    <link rel="stylesheet" href="css/contacts.css" />
+    <script src="js/contacts.js" defer></script>
   </head>
   <body>
-    <!-- ── Header ── -->
-    <header>
-      <div class="logo">Laptop<span>Catalog</span></div>
-      <div class="header-right">
-        <div class="language-selector">
-          <button class="lang-btn active" data-lang="uk">🇺🇦 UK</button>
-          <button class="lang-btn" data-lang="pl">🇵🇱 PL</button>
-          <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+    <!-- PAGE 1: PREVIEW/HERO PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="previewPage" class="page-container active">
+      <h2 style="position: absolute; left: -9999px">LaptopCatalog — каталог ноутбуків 2026, понад 55 моделей</h2>
+
+      <nav class="xnav">
+        <div class="xlogo">Laptop<b>Catalog</b></div>
+        <div class="xnav-links">
+          <span class="xnav-link active" onclick="showPage('previewPage')">Превью</span>
+          <span class="xnav-link" onclick="showPage('catalogPage')">Каталог</span>
+          <span class="xnav-link">Акції</span>
+          <span class="xnav-link">Контакти</span>
         </div>
-        <button class="sidebar-toggle" id="sidebarToggle">☰ <span id="filtersLabel">Фільтри</span></button>
-        <button class="compare-btn" id="openCompare">
-          ⚖️ <span id="compareLabel">Порівняти</span>
-          <span class="compare-count" id="compareCount">0</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- ── Hero ── -->
-    <section class="hero">
-      <h1 id="heroTitle">Каталог <span>ноутбуків</span></h1>
-      <p id="heroSubtitle">Понад 55 моделей від провідних брендів — знайдіть свій ідеальний ноутбук</p>
-      <div class="search-bar">
-        <input type="text" id="searchInput" placeholder="Пошук за назвою, брендом, процесором..." />
-        <button>🔍</button>
-      </div>
-    </section>
-
-    <!-- ── Page ── -->
-    <div class="page">
-      <!-- ── Sidebar ── -->
-      <aside id="sidebar">
-        <!-- Brand -->
-        <div class="filter-group">
-          <div class="filter-title" data-i18n="brand">Бренд</div>
-          <div class="check-list" id="brandFilters"></div>
-        </div>
-
-        <!-- Category -->
-        <div class="filter-group">
-          <div class="filter-title" data-i18n="category">Категорія</div>
-          <div class="check-list" id="categoryFilters"></div>
-        </div>
-
-        <!-- Price -->
-        <div class="filter-group">
-          <div class="filter-title" data-i18n="price">Ціна (PLN)</div>
-          <div class="price-inputs">
-            <input type="number" id="priceMin" placeholder="Від" min="0" data-i18n-placeholder="from" />
-            <span class="price-sep">—</span>
-            <input type="number" id="priceMax" placeholder="До" min="0" data-i18n-placeholder="to" />
+        <div class="xnav-r">
+          <div class="xlang">
+            <button>UA</button>
+            <button class="on">PL</button>
+            <button>EN</button>
           </div>
-          <input type="range" id="priceRange" min="0" max="5000" step="50" value="5000" />
+          <button class="xcmp">&#9878; Порівняти <span class="xbadge">0</span></button>
         </div>
+      </nav>
 
-        <!-- RAM -->
-        <div class="filter-group">
-          <div class="filter-title" data-i18n="ram">Оперативна пам'ять</div>
-          <div class="check-list" id="ramFilters"></div>
+      <section class="xhero">
+        <canvas id="xCanvas" class="xcanvas"></canvas>
+
+        <div class="xring xring1">
+          <div class="xring-dot"></div>
+          <div class="xring-dot2"></div>
         </div>
+        <div class="xring xring2"></div>
+        <div class="xring xring3"></div>
 
-        <!-- Display -->
-        <div class="filter-group">
-          <div class="filter-title" data-i18n="screen_size">Розмір екрану</div>
-          <div class="check-list" id="screenFilters"></div>
-        </div>
+        <div class="xgrid">
+          <!-- ═══ LEFT ═══ -->
+          <div class="xleft">
+            <div class="xtag">
+              <div class="xtag-pulse"></div>
+              Каталог ноутбуків 2026
+            </div>
 
-        <!-- GPU -->
-        <div class="filter-group">
-          <div class="filter-title" data-i18n="graphics">Відеокарта</div>
-          <div class="check-list" id="gpuFilters"></div>
-        </div>
+            <h1 class="xh1">
+              Знайди свій<br />
+              <span class="xh1-color">ідеальний</span>
+              <span class="xh1-ghost">ноутбук</span>
+            </h1>
 
-        <button class="filter-reset" id="resetFilters" data-i18n="reset_filters">✕ Скинути фільтри</button>
-      </aside>
+            <p class="xsub">Понад <strong>55 моделей</strong> від Dell, Apple, Lenovo, ASUS, HP та Acer. Фільтруй, порівнюй, купуй розумно.</p>
 
-      <!-- ── Main ── -->
-      <main>
-        <div class="toolbar">
-          <span class="results-info" data-i18n-showing="showing">
-            Показано <strong id="resultCount">0</strong> <span data-i18n="laptops">ноутбуків</span>
-          </span>
-          <div class="toolbar-right">
-            <select class="sort-select" id="sortSelect">
-              <option value="default" data-i18n="sort_default">За замовчуванням</option>
-              <option value="price-asc" data-i18n="sort_price_asc">Ціна: від низької</option>
-              <option value="price-desc" data-i18n="sort_price_desc">Ціна: від високої</option>
-              <option value="name-asc" data-i18n="sort_name_asc">Назва: А → Я</option>
-              <option value="name-desc" data-i18n="sort_name_desc">Назва: Я → А</option>
-              <option value="ram-desc" data-i18n="sort_ram_desc">RAM: від більшої</option>
-            </select>
-            <div class="view-btns">
-              <button class="view-btn active" id="gridViewBtn" title="Сітка">▦</button>
-              <button class="view-btn" id="listViewBtn" title="Список">☰</button>
+            <div class="xsearch">
+              <svg
+                class="xsearch-icon"
+                width="15"
+                height="15"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+              <input type="text" id="xSearchInput" placeholder="" aria-label="Пошук ноутбука" autocomplete="off" />
+              <span class="xcursor" id="xCursor"></span>
+              <div class="xsearch-tags">
+                <span class="xstag">RTX</span>
+                <span class="xstag">M3</span>
+                <span class="xstag">i7</span>
+              </div>
+              <button class="xsearch-btn">Знайти</button>
+            </div>
+
+            <div class="xstats">
+              <div class="xst">
+                <div class="xstn" id="xCnt">0<em>+</em></div>
+                <div class="xstl">Моделей</div>
+              </div>
+              <div class="xst-div"></div>
+              <div class="xst">
+                <div class="xstn">6</div>
+                <div class="xstl">Брендів</div>
+              </div>
+              <div class="xst-div"></div>
+              <div class="xst">
+                <div class="xstn">3</div>
+                <div class="xstl">Категорії</div>
+              </div>
+              <div class="xst-div"></div>
+              <div class="xst">
+                <div class="xstn" id="xSat">0<em>%</em></div>
+                <div class="xstl">Задоволені</div>
+              </div>
+            </div>
+
+            <div class="xtrust">
+              <div class="xtrust-avatars">
+                <div class="xav" style="background: #7c3aed">АВ</div>
+                <div class="xav" style="background: #0891b2">МД</div>
+                <div class="xav" style="background: #059669">КП</div>
+                <div class="xav" style="background: #d97706">ОС</div>
+                <div class="xav" style="background: #9333ea">+</div>
+              </div>
+              <div class="xtrust-text">
+                <div class="xstars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <div><strong>2 400+</strong> задоволених покупців</div>
+              </div>
+            </div>
+
+            <div class="xcta">
+              <a class="xbtn-p" onclick="showPage('catalogPage')">
+                Перейти до каталогу
+                <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </a>
+              <a class="xbtn-g" href="#contacts">Контакти</a>
+            </div>
+          </div>
+
+          <!-- ═══ RIGHT ═══ -->
+          <div class="xright">
+            <div class="xlaptop-stage">
+              <!-- Floating chips -->
+              <div class="xchip chipA">
+                <span class="xchip-dot" style="background: #10b981"></span>
+                GPU <span class="xchip-val">RTX 4060</span>
+              </div>
+              <div class="xchip chipB">
+                <span class="xchip-dot" style="background: #7c3aed"></span>
+                CPU <span class="xchip-val">M3 Pro</span>
+              </div>
+              <div class="xchip chipC">
+                <span class="xchip-dot" style="background: #f59e0b"></span>
+                RAM <span class="xchip-val">32 GB</span>
+              </div>
+              <div class="xchip chipD">
+                <span class="xchip-dot" style="background: #06b6d4"></span>
+                SSD <span class="xchip-val">1 TB</span>
+              </div>
+
+              <div class="xlaptop-float">
+                <svg width="380" height="245" viewBox="0 0 380 245" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="xLG1" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#100840" />
+                      <stop offset="50%" stop-color="#1c0c58" />
+                      <stop offset="100%" stop-color="#080320" />
+                    </linearGradient>
+                    <linearGradient id="xLG2" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#20203a" />
+                      <stop offset="100%" stop-color="#12122a" />
+                    </linearGradient>
+                    <linearGradient id="xLG3" x1="0" y1="0" x2=".5" y2=".5">
+                      <stop offset="0%" stop-color="rgba(255,255,255,.11)" />
+                      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+                    </linearGradient>
+                    <linearGradient id="xLG4" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="rgba(124,58,237,0)" />
+                      <stop offset="50%" stop-color="rgba(124,58,237,0.1)" />
+                      <stop offset="100%" stop-color="rgba(124,58,237,0)" />
+                    </linearGradient>
+                    <linearGradient id="xLG5" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#7c3aed" />
+                      <stop offset="100%" stop-color="#4f46e5" />
+                    </linearGradient>
+                  </defs>
+                  <!-- Body -->
+                  <rect x="12" y="5" width="356" height="204" rx="14" fill="url(#xLG2)" stroke="#32325a" stroke-width=".8" />
+                  <!-- Screen -->
+                  <rect x="17" y="9" width="346" height="196" rx="10" fill="url(#xLG1)" />
+                  <rect x="17" y="9" width="346" height="196" rx="10" fill="url(#xLG3)" />
+                  <!-- Scan line -->
+                  <rect x="17" y="9" width="346" height="44" rx="0" fill="url(#xLG4)" opacity="0">
+                    <animate attributeName="y" values="9;165;9" dur="3.5s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0;1;0" dur="3.5s" repeatCount="indefinite" />
+                  </rect>
+                  <!-- Camera -->
+                  <circle cx="190" cy="7.5" r="4.5" fill="#18183a" stroke="#28285a" stroke-width=".7" />
+                  <circle cx="190" cy="7.5" r="1.8" fill="#0a0a22" />
+                  <!-- Topbar -->
+                  <rect x="26" y="18" width="328" height="24" rx="5" fill="rgba(255,255,255,0.03)" />
+                  <circle cx="40" cy="30" r="6" fill="rgba(124,58,237,0.55)" />
+                  <circle cx="40" cy="30" r="3" fill="rgba(124,58,237,0.9)" />
+                  <text
+                    x="54"
+                    y="34"
+                    fill="rgba(255,255,255,0.75)"
+                    font-family="Inter,sans-serif"
+                    font-size="8.5"
+                    font-weight="700"
+                    letter-spacing=".3"
+                  >
+                    LaptopCatalog
+                  </text>
+                  <rect x="270" y="21" width="44" height="18" rx="4" fill="rgba(124,58,237,0.22)" stroke="rgba(124,58,237,0.45)" stroke-width=".6" />
+                  <text x="292" y="32" fill="#a78bfa" font-family="Inter,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle">
+                    Каталог
+                  </text>
+                  <rect
+                    x="322"
+                    y="21"
+                    width="28"
+                    height="18"
+                    rx="4"
+                    fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.08)"
+                    stroke-width=".5"
+                  />
+                  <text x="336" y="32" fill="rgba(255,255,255,0.35)" font-family="Inter,sans-serif" font-size="7.5" text-anchor="middle">Ще</text>
+                  <!-- Search -->
+                  <rect
+                    x="26"
+                    y="50"
+                    width="210"
+                    height="18"
+                    rx="4"
+                    fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.08)"
+                    stroke-width=".5"
+                  />
+                  <text x="36" y="62" fill="rgba(255,255,255,0.18)" font-family="Inter,sans-serif" font-size="7.5">Пошук ноутбука...</text>
+                  <rect x="244" y="50" width="46" height="18" rx="4" fill="url(#xLG5)" stroke="rgba(124,58,237,0.6)" stroke-width=".5" />
+                  <text x="267" y="62" fill="#fff" font-family="Inter,sans-serif" font-size="7.5" font-weight="700" text-anchor="middle">Знайти</text>
+                  <!-- Filters row -->
+                  <rect x="26" y="75" width="38" height="14" rx="3" fill="rgba(124,58,237,0.18)" stroke="rgba(124,58,237,0.35)" stroke-width=".5" />
+                  <text x="45" y="85" fill="#a78bfa" font-family="Inter,sans-serif" font-size="7" text-anchor="middle" font-weight="600">Dell</text>
+                  <rect x="68" y="75" width="42" height="14" rx="3" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.08)" stroke-width=".5" />
+                  <text x="89" y="85" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif" font-size="7" text-anchor="middle">Lenovo</text>
+                  <rect
+                    x="114"
+                    y="75"
+                    width="38"
+                    height="14"
+                    rx="3"
+                    fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.08)"
+                    stroke-width=".5"
+                  />
+                  <text x="133" y="85" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif" font-size="7" text-anchor="middle">Apple</text>
+                  <rect
+                    x="156"
+                    y="75"
+                    width="38"
+                    height="14"
+                    rx="3"
+                    fill="rgba(255,255,255,0.04)"
+                    stroke="rgba(255,255,255,0.08)"
+                    stroke-width=".5"
+                  />
+                  <text x="175" y="85" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif" font-size="7" text-anchor="middle">ASUS</text>
+                  <text x="204" y="85" fill="rgba(255,255,255,0.18)" font-family="Inter,sans-serif" font-size="7">+3</text>
+                  <text x="296" y="85" fill="rgba(255,255,255,0.25)" font-family="Inter,sans-serif" font-size="7">Показано 55</text>
+                  <!-- Cards row -->
+                  <!-- Card 1 -->
+                  <rect x="26" y="96" width="97" height="100" rx="7" fill="rgba(124,58,237,0.07)" stroke="rgba(124,58,237,0.35)" stroke-width=".8" />
+                  <rect x="31" y="101" width="87" height="50" rx="4" fill="rgba(124,58,237,0.14)" />
+                  <text x="74" y="131" fill="#7c3aed" font-family="Inter,sans-serif" font-size="9" font-weight="900" text-anchor="middle">
+                    LEGION
+                  </text>
+                  <rect x="31" y="157" width="45" height="5" rx="1.5" fill="rgba(255,255,255,0.08)" />
+                  <rect x="31" y="165" width="60" height="4" rx="1.5" fill="rgba(255,255,255,0.05)" />
+                  <text x="31" y="186" fill="#fff" font-family="Inter,sans-serif" font-size="9" font-weight="900">4 499 zł</text>
+                  <!-- Card 2 -->
+                  <rect
+                    x="129"
+                    y="96"
+                    width="97"
+                    height="100"
+                    rx="7"
+                    fill="rgba(255,255,255,0.025)"
+                    stroke="rgba(255,255,255,0.07)"
+                    stroke-width=".7"
+                  />
+                  <rect x="134" y="101" width="87" height="50" rx="4" fill="rgba(255,255,255,0.04)" />
+                  <text
+                    x="177"
+                    y="131"
+                    fill="rgba(200,200,220,0.6)"
+                    font-family="Inter,sans-serif"
+                    font-size="8"
+                    font-weight="700"
+                    text-anchor="middle"
+                  >
+                    MacBook
+                  </text>
+                  <rect x="134" y="157" width="45" height="5" rx="1.5" fill="rgba(255,255,255,0.06)" />
+                  <rect x="134" y="165" width="60" height="4" rx="1.5" fill="rgba(255,255,255,0.04)" />
+                  <text x="134" y="186" fill="#fff" font-family="Inter,sans-serif" font-size="9" font-weight="900">5 999 zł</text>
+                  <!-- Card 3 -->
+                  <rect
+                    x="232"
+                    y="96"
+                    width="97"
+                    height="100"
+                    rx="7"
+                    fill="rgba(255,255,255,0.025)"
+                    stroke="rgba(255,255,255,0.07)"
+                    stroke-width=".7"
+                  />
+                  <rect x="237" y="101" width="87" height="50" rx="4" fill="rgba(30,0,0,0.35)" />
+                  <text x="280" y="131" fill="#ef4444" font-family="Inter,sans-serif" font-size="9" font-weight="900" text-anchor="middle">ROG</text>
+                  <rect x="237" y="157" width="45" height="5" rx="1.5" fill="rgba(255,255,255,0.06)" />
+                  <rect x="237" y="165" width="60" height="4" rx="1.5" fill="rgba(255,255,255,0.04)" />
+                  <text x="237" y="186" fill="#fff" font-family="Inter,sans-serif" font-size="9" font-weight="900">3 799 zł</text>
+                  <!-- Keyboard -->
+                  <rect x="4" y="210" width="372" height="28" rx="4" fill="url(#xLG2)" stroke="#2a2a48" stroke-width=".8" />
+                  <g fill="#191932" stroke="#252545" stroke-width=".35">
+                    <rect x="14" y="215" rx="2" width="20" height="12" />
+                    <rect x="38" y="215" rx="2" width="20" height="12" />
+                    <rect x="62" y="215" rx="2" width="20" height="12" />
+                    <rect x="86" y="215" rx="2" width="20" height="12" />
+                    <rect x="110" y="215" rx="2" width="20" height="12" />
+                    <rect x="134" y="215" rx="2" width="20" height="12" />
+                    <rect x="158" y="215" rx="2" width="20" height="12" />
+                    <rect x="182" y="215" rx="2" width="20" height="12" />
+                    <rect x="206" y="215" rx="2" width="20" height="12" />
+                    <rect x="230" y="215" rx="2" width="20" height="12" />
+                    <rect x="254" y="215" rx="2" width="20" height="12" />
+                    <rect x="278" y="215" rx="2" width="20" height="12" />
+                    <rect x="302" y="215" rx="2" width="20" height="12" />
+                    <rect x="326" y="215" rx="2" width="36" height="12" />
+                    <rect x="108" y="230" rx="2" width="164" height="10" />
+                  </g>
+                  <!-- Trackpad -->
+                  <rect x="148" y="230" width="84" height="8" rx="3" fill="#181830" stroke="#242445" stroke-width=".35" />
+                </svg>
+              </div>
+
+              <div class="xlaptop-shadow"></div>
+
+              <!-- Live metrics strip -->
+              <div class="xlive-bar">
+                <div class="xlive-item">
+                  <div class="xlive-val"><span class="xlive-dot"></span>Live</div>
+                  <div class="xlive-lbl">Статус</div>
+                </div>
+                <div class="xlive-item">
+                  <div class="xlive-val" id="xViewers">147</div>
+                  <div class="xlive-lbl">Онлайн</div>
+                </div>
+                <div class="xlive-item">
+                  <div class="xlive-val">55</div>
+                  <div class="xlive-lbl">Моделей</div>
+                </div>
+                <div class="xlive-item">
+                  <div class="xlive-val" id="xUpdated">щойно</div>
+                  <div class="xlive-lbl">Оновлено</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="xcats">
+              <a onclick="showPage('catalogPage')" class="xcat xc1" style="cursor: pointer">
+                <div class="xcat-ic xci1">🎮</div>
+                <div class="xcat-txt">
+                  <div class="xcat-t">Ігрові</div>
+                  <div class="xcat-s">7 моделей</div>
+                </div>
+                <span class="xpill pp1">HOT</span>
+              </a>
+              <a onclick="showPage('catalogPage')" class="xcat xc2" style="cursor: pointer">
+                <div class="xcat-ic xci2">💼</div>
+                <div class="xcat-txt">
+                  <div class="xcat-t">Бізнес</div>
+                  <div class="xcat-s">34 моделі</div>
+                </div>
+                <span class="xpill pp2">TOP</span>
+              </a>
+              <a onclick="showPage('catalogPage')" class="xcat xc3" style="cursor: pointer">
+                <div class="xcat-ic xci3">🎓</div>
+                <div class="xcat-txt">
+                  <div class="xcat-t">Навчання</div>
+                  <div class="xcat-s">14 моделей</div>
+                </div>
+                <span class="xpill pp3">SALE</span>
+              </a>
+              <a onclick="showPage('catalogPage')" class="xcat xc4" style="cursor: pointer">
+                <div class="xcat-ic xci4">🍎</div>
+                <div class="xcat-txt">
+                  <div class="xcat-t">Apple Mac</div>
+                  <div class="xcat-s">8 моделей</div>
+                </div>
+                <span class="xpill pp4">M-chip</span>
+              </a>
             </div>
           </div>
         </div>
 
-        <div class="active-filters" id="activeFilters"></div>
+        <!-- Brand marquee -->
+        <div class="xmarquee-wrap" aria-hidden="true">
+          <div class="xmarquee-inner" id="xMarquee">
+            <div class="xbrand"><span class="xbrand-name">DELL</span><span class="xbrand-count">17</span></div>
+            <div class="xbrand"><span class="xbrand-name">LENOVO</span><span class="xbrand-count">16</span></div>
+            <div class="xbrand"><span class="xbrand-name">APPLE</span><span class="xbrand-count">8</span></div>
+            <div class="xbrand"><span class="xbrand-name">ASUS</span><span class="xbrand-count">2</span></div>
+            <div class="xbrand"><span class="xbrand-name">HP</span><span class="xbrand-count">11</span></div>
+            <div class="xbrand"><span class="xbrand-name">ACER</span><span class="xbrand-count">2</span></div>
+            <div class="xbrand"><span class="xbrand-name">DELL</span><span class="xbrand-count">17</span></div>
+            <div class="xbrand"><span class="xbrand-name">LENOVO</span><span class="xbrand-count">16</span></div>
+            <div class="xbrand"><span class="xbrand-name">APPLE</span><span class="xbrand-count">8</span></div>
+            <div class="xbrand"><span class="xbrand-name">ASUS</span><span class="xbrand-count">2</span></div>
+            <div class="xbrand"><span class="xbrand-name">HP</span><span class="xbrand-count">11</span></div>
+            <div class="xbrand"><span class="xbrand-name">ACER</span><span class="xbrand-count">2</span></div>
+          </div>
+        </div>
 
-        <div class="catalog-grid" id="catalog"></div>
-        <div class="pagination" id="pagination"></div>
-      </main>
+        <!-- Features -->
+        <div class="xfeats">
+          <div class="xfeat">
+            <span class="xfeat-ico">⚡</span>
+            <div>
+              <div class="xfeat-t">Швидке порівняння</div>
+              <div class="xfeat-s">До 4 моделей одразу</div>
+            </div>
+          </div>
+          <div class="xfeat">
+            <span class="xfeat-ico">🔍</span>
+            <div>
+              <div class="xfeat-t">Розумний пошук</div>
+              <div class="xfeat-s">За назвою, брендом, CPU</div>
+            </div>
+          </div>
+          <div class="xfeat">
+            <span class="xfeat-ico">💰</span>
+            <div>
+              <div class="xfeat-t">Актуальні ціни PLN</div>
+              <div class="xfeat-s">Оновлено сьогодні</div>
+            </div>
+          </div>
+          <div class="xfeat">
+            <span class="xfeat-ico">🌐</span>
+            <div>
+              <div class="xfeat-t">Три мови</div>
+              <div class="xfeat-s">UA · PL · EN</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="xscroll" aria-hidden="true">
+          <span class="xscroll-label">Scroll</span>
+          <div class="xscroll-mouse"><div class="xscroll-w"></div></div>
+        </div>
+      </section>
+
+      <script>
+        (function () {
+          var canvas = document.getElementById("xCanvas");
+          if (!canvas) return;
+          var ctx = canvas.getContext("2d");
+          var W,
+            H,
+            pts = [];
+
+          function resize() {
+            var sec = canvas.parentElement;
+            W = canvas.width = sec.offsetWidth || 1200;
+            H = canvas.height = sec.offsetHeight || 800;
+          }
+          resize();
+          window.addEventListener(
+            "resize",
+            function () {
+              resize();
+              initPts();
+            },
+            { passive: true },
+          );
+
+          function initPts() {
+            pts = [];
+            var n = Math.floor((W * H) / 9000);
+            for (var i = 0; i < n; i++) {
+              pts.push({
+                x: Math.random() * W,
+                y: Math.random() * H,
+                vx: (Math.random() - 0.5) * 0.25,
+                vy: (Math.random() - 0.5) * 0.25,
+                r: Math.random() * 1.7 + 0.4,
+                op: Math.random() * 0.45 + 0.12,
+              });
+            }
+          }
+          initPts();
+
+          var mx = -999,
+            my = -999;
+          document.addEventListener(
+            "mousemove",
+            function (e) {
+              mx = e.clientX;
+              my = e.clientY;
+            },
+            { passive: true },
+          );
+
+          function draw() {
+            ctx.clearRect(0, 0, W, H);
+            ctx.fillStyle = "#05050f";
+            ctx.fillRect(0, 0, W, H);
+            var g = ctx.createRadialGradient(W * 0.52, H * 0.38, 0, W * 0.52, H * 0.38, H * 0.65);
+            g.addColorStop(0, "rgba(38,14,96,.24)");
+            g.addColorStop(1, "rgba(5,5,15,0)");
+            ctx.fillStyle = g;
+            ctx.fillRect(0, 0, W, H);
+
+            for (var i = 0; i < pts.length; i++) {
+              var p = pts[i];
+              p.x += p.vx;
+              p.y += p.vy;
+              if (p.x < 0 || p.x > W) p.vx *= -1;
+              if (p.y < 0 || p.y > H) p.vy *= -1;
+              var dd = Math.hypot(p.x - mx, p.y - my);
+              var op2 = dd < 150 ? p.op + (1 - dd / 150) * 0.6 : p.op;
+              ctx.beginPath();
+              ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+              ctx.fillStyle = "rgba(175,148,255," + op2 + ")";
+              ctx.fill();
+              for (var j = i + 1; j < pts.length; j++) {
+                var q = pts[j],
+                  d2 = Math.hypot(p.x - q.x, p.y - q.y);
+                if (d2 < 100) {
+                  ctx.beginPath();
+                  ctx.moveTo(p.x, p.y);
+                  ctx.lineTo(q.x, q.y);
+                  ctx.strokeStyle = "rgba(124,58,237," + (1 - d2 / 100) * 0.13 + ")";
+                  ctx.lineWidth = 0.5;
+                  ctx.stroke();
+                }
+              }
+            }
+            requestAnimationFrame(draw);
+          }
+          draw();
+
+          function counter(id, target, suf, delay) {
+            var n = 0;
+            setTimeout(function () {
+              var el = document.getElementById(id);
+              var t = setInterval(function () {
+                n = Math.min(n + 2, target);
+                if (el) el.innerHTML = n + "<em>" + suf + "</em>";
+                if (n >= target) clearInterval(t);
+              }, 30);
+            }, delay);
+          }
+          counter("xCnt", 55, "+", 400);
+          counter("xSat", 98, "%", 600);
+
+          var phrases = ["Legion 5 Ryzen 7...", "MacBook Air M3...", "ThinkPad i7 16GB...", "ROG Strix RTX...", "HP Spectre x360..."];
+          var pi = 0,
+            ci = 0,
+            deleting = false,
+            inp = document.getElementById("xSearchInput");
+          function typewriter() {
+            if (!inp) return;
+            var phrase = phrases[pi];
+            if (!deleting) {
+              ci++;
+              inp.placeholder = phrase.slice(0, ci);
+              if (ci >= phrase.length) {
+                deleting = true;
+                setTimeout(typewriter, 1800);
+                return;
+              }
+              setTimeout(typewriter, 80);
+            } else {
+              ci--;
+              inp.placeholder = phrase.slice(0, ci);
+              if (ci <= 0) {
+                deleting = false;
+                pi = (pi + 1) % phrases.length;
+                setTimeout(typewriter, 400);
+                return;
+              }
+              setTimeout(typewriter, 40);
+            }
+          }
+          setTimeout(typewriter, 900);
+
+          var viewers = 147;
+          setInterval(function () {
+            var d = Math.floor(Math.random() * 5) - 2;
+            viewers = Math.max(130, Math.min(180, viewers + d));
+            var el = document.getElementById("xViewers");
+            if (el) el.textContent = viewers;
+          }, 2500);
+
+          document.querySelectorAll(".xlang button").forEach(function (b) {
+            b.addEventListener("click", function () {
+              document.querySelectorAll(".xlang button").forEach(function (x) {
+                x.classList.remove("on");
+              });
+              b.classList.add("on");
+            });
+          });
+
+          document.querySelectorAll(".xstag").forEach(function (t) {
+            t.addEventListener("click", function () {
+              if (inp) {
+                inp.value = t.textContent;
+                inp.focus();
+              }
+            });
+          });
+        })();
+      </script>
     </div>
 
-    <!-- ── Detail Modal ── -->
-    <div class="modal-overlay" id="detailModal">
-      <div class="modal" id="detailModalContent">
-        <button class="modal-close" id="closeDetail">✕</button>
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+    <!-- PAGE 2: CATALOG PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+    <div id="catalogPage" class="page-container">
+      <!-- ── Header ── -->
+      <header>
+        <div class="logo">Laptop<span>Catalog</span></div>
+        <div class="xnav-links" style="gap: 1.8rem; display: flex">
+          <span
+            class="xnav-link"
+            onclick="showPage('previewPage')"
+            style="font-size: 12px; color: rgba(255, 255, 255, 0.4); font-weight: 500; cursor: pointer; transition: color 0.2s; letter-spacing: 0.2px"
+            >Превью</span
+          >
+          <span
+            class="xnav-link active"
+            onclick="showPage('catalogPage')"
+            style="font-size: 12px; color: #7c3aed; font-weight: 600; cursor: pointer; transition: color 0.2s; letter-spacing: 0.2px"
+            >Каталог</span
+          >
+          <span
+            class="xnav-link"
+            style="font-size: 12px; color: rgba(255, 255, 255, 0.4); font-weight: 500; cursor: pointer; transition: color 0.2s; letter-spacing: 0.2px"
+            >Акції</span
+          >
+          <span
+            class="xnav-link"
+            style="font-size: 12px; color: rgba(255, 255, 255, 0.4); font-weight: 500; cursor: pointer; transition: color 0.2s; letter-spacing: 0.2px"
+            >Контакти</span
+          >
+        </div>
+        <div class="header-right">
+          <div class="language-selector">
+            <button class="lang-btn active" data-lang="uk">🇺🇦 UK</button>
+            <button class="lang-btn" data-lang="pl">🇵🇱 PL</button>
+            <button class="lang-btn" data-lang="en">🇬🇧 EN</button>
+          </div>
+          <button class="sidebar-toggle" id="sidebarToggle">☰ <span id="filtersLabel">Фільтри</span></button>
+          <button class="compare-btn" id="openCompare">
+            ⚖️ <span id="compareLabel">Порівняти</span>
+            <span class="compare-count" id="compareCount">0</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- ── Hero ── -->
+      <section class="hero">
+        <h1 id="heroTitle">Каталог <span>ноутбуків</span></h1>
+        <p id="heroSubtitle">Понад 55 моделей від провідних брендів — знайдіть свій ідеальний ноутбук</p>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Пошук за назвою, брендом, процесором..." />
+          <button>🔍</button>
+        </div>
+      </section>
+
+      <!-- ── Page ── -->
+      <div class="page">
+        <!-- ── Sidebar ── -->
+        <aside id="sidebar">
+          <!-- Brand -->
+          <div class="filter-group">
+            <div class="filter-title" data-i18n="brand">Бренд</div>
+            <div class="check-list" id="brandFilters"></div>
+          </div>
+
+          <!-- Category -->
+          <div class="filter-group">
+            <div class="filter-title" data-i18n="category">Категорія</div>
+            <div class="check-list" id="categoryFilters"></div>
+          </div>
+
+          <!-- Price -->
+          <div class="filter-group">
+            <div class="filter-title" data-i18n="price">Ціна (PLN)</div>
+            <div class="price-inputs">
+              <input type="number" id="priceMin" placeholder="Від" min="0" data-i18n-placeholder="from" />
+              <span class="price-sep">—</span>
+              <input type="number" id="priceMax" placeholder="До" min="0" data-i18n-placeholder="to" />
+            </div>
+            <input type="range" id="priceRange" min="0" max="5000" step="50" value="5000" />
+          </div>
+
+          <!-- RAM -->
+          <div class="filter-group">
+            <div class="filter-title" data-i18n="ram">Оперативна пам'ять</div>
+            <div class="check-list" id="ramFilters"></div>
+          </div>
+
+          <!-- Display -->
+          <div class="filter-group">
+            <div class="filter-title" data-i18n="screen_size">Розмір екрану</div>
+            <div class="check-list" id="screenFilters"></div>
+          </div>
+
+          <!-- GPU -->
+          <div class="filter-group">
+            <div class="filter-title" data-i18n="graphics">Відеокарта</div>
+            <div class="check-list" id="gpuFilters"></div>
+          </div>
+
+          <button class="filter-reset" id="resetFilters" data-i18n="reset_filters">✕ Скинути фільтри</button>
+        </aside>
+
+        <!-- ── Main ── -->
+        <main>
+          <div class="toolbar">
+            <span class="results-info" data-i18n-showing="showing">
+              Показано <strong id="resultCount">0</strong> <span data-i18n="laptops">ноутбуків</span>
+            </span>
+            <div class="toolbar-right">
+              <select class="sort-select" id="sortSelect">
+                <option value="default" data-i18n="sort_default">За замовчуванням</option>
+                <option value="price-asc" data-i18n="sort_price_asc">Ціна: від низької</option>
+                <option value="price-desc" data-i18n="sort_price_desc">Ціна: від високої</option>
+                <option value="name-asc" data-i18n="sort_name_asc">Назва: А → Я</option>
+                <option value="name-desc" data-i18n="sort_name_desc">Назва: Я → А</option>
+                <option value="ram-desc" data-i18n="sort_ram_desc">RAM: від більшої</option>
+              </select>
+              <div class="view-btns">
+                <button class="view-btn active" id="gridViewBtn" title="Сітка">▦</button>
+                <button class="view-btn" id="listViewBtn" title="Список">☰</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="active-filters" id="activeFilters"></div>
+
+          <div class="catalog-grid" id="catalog"></div>
+          <div class="pagination" id="pagination"></div>
+        </main>
       </div>
-    </div>
 
-    <!-- ── Compare Modal ── -->
-    <div class="modal-overlay compare-modal" id="compareModal">
-      <div class="modal">
-        <button class="modal-close" id="closeCompare">✕</button>
-        <h2 style="margin-bottom: 1.2rem">⚖️ Порівняння ноутбуків</h2>
-        <div id="compareContent"></div>
+      <!-- ── Detail Modal ── -->
+      <div class="modal-overlay" id="detailModal">
+        <div class="modal" id="detailModalContent">
+          <button class="modal-close" id="closeDetail">✕</button>
+        </div>
       </div>
+
+      <!-- ── Compare Modal ── -->
+      <div class="modal-overlay compare-modal" id="compareModal">
+        <div class="modal">
+          <button class="modal-close" id="closeCompare">✕</button>
+          <h2 style="margin-bottom: 1.2rem">⚖️ Порівняння ноутбуків</h2>
+          <div id="compareContent"></div>
+        </div>
+      </div>
+
+      <!-- JavaScript Files -->
+      <script type="module" src="js/app.js"></script>
     </div>
 
-    <!-- JavaScript Files -->
-    <script type="module" src="js/app.js"></script>
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+    <!-- PAGE 3: CONTACTS PAGE -->
+    <!-- ═══════════════════════════════════════════════════════════════════════ -->
+    <section id="contactsPage" class="page-container contact-page" aria-labelledby="contactsTitle">
+      <div class="contact-blob contact-blob-1"></div>
+      <div class="contact-blob contact-blob-2"></div>
+      <div class="contact-blob contact-blob-3"></div>
+      <div class="contact-cursor-glow" id="contactGlow" aria-hidden="true"></div>
+
+      <div class="contact-wrapper">
+        <nav class="contact-nav" aria-label="Контакти">
+          <div class="contact-logo">Tech<span>Lab</span></div>
+          <div class="contact-nav-tag">Laptop Store</div>
+        </nav>
+
+        <section class="contact-hero">
+          <p class="contact-eyebrow">// зв'яжіться з нами</p>
+          <h1 id="contactsTitle">
+            Контакти
+            <span>& підтримка</span>
+          </h1>
+          <p class="contact-sub">Готові допомогти з вибором ноутбука, оформленням замовлення або будь-яким іншим питанням - напишіть або зателефонуйте.</p>
+        </section>
+
+        <div class="contact-divider" aria-hidden="true">
+          <div class="contact-divider-line"></div>
+          <div class="contact-divider-dot"></div>
+          <div class="contact-divider-line"></div>
+        </div>
+
+        <div class="contact-cards">
+          <a href="tel:+48795869061" class="contact-card contact-card-phone">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="24" height="24" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <p class="contact-card-label">Телефон</p>
+            <p class="contact-card-value">+48 795 869 061</p>
+            <span class="contact-card-action">
+              Зателефонувати
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" /></svg>
+            </span>
+          </a>
+
+          <a href="https://t.me/silmage" target="_blank" rel="noopener" class="contact-card contact-card-tg">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
+                <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22-1.97 9.28c-.15.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.61.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12l-8.02 4.37-2.95-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.54-.19 1.01.13.97.89z" />
+              </svg>
+            </div>
+            <p class="contact-card-label">Telegram</p>
+            <p class="contact-card-value">@silmage</p>
+            <span class="contact-card-action">
+              Написати
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" /></svg>
+            </span>
+          </a>
+
+          <a href="https://www.instagram.com/_silmag_/" target="_blank" rel="noopener" class="contact-card contact-card-ig">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
+                <path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.64-.07-4.85s.01-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.41-11.85a1.44 1.44 0 1 0 0 2.88 1.44 1.44 0 0 0 0-2.88z" />
+              </svg>
+            </div>
+            <p class="contact-card-label">Instagram</p>
+            <p class="contact-card-value">@_silmag_</p>
+            <span class="contact-card-action">
+              Відкрити
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" /></svg>
+            </span>
+          </a>
+
+          <a href="https://wa.me/48795869061" target="_blank" rel="noopener" class="contact-card contact-card-wa">
+            <div class="contact-card-icon">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24" aria-hidden="true">
+                <path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.46-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.69.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26C2.16 6.45 6.6 2.01 12.05 2.01c2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.89-9.88 9.89M20.46 3.49A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.31-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9a11.82 11.82 0 0 0-3.48-8.41z" />
+              </svg>
+            </div>
+            <p class="contact-card-label">WhatsApp</p>
+            <p class="contact-card-value">+48 795 869 061</p>
+            <span class="contact-card-action">
+              Написати
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 6h8M6 2l4 4-4 4" /></svg>
+            </span>
+          </a>
+        </div>
+
+        <div class="contact-strip">
+          <div class="contact-strip-left">
+            <h2>Потрібна консультація?</h2>
+            <p>Напишіть нам у Telegram - відповімо швидко та допоможемо підібрати ідеальний ноутбук.</p>
+          </div>
+          <a href="https://t.me/silmage" target="_blank" rel="noopener" class="contact-strip-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22-1.97 9.28c-.15.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.61.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12l-8.02 4.37-2.95-.92c-.64-.2-.66-.64.14-.95l11.57-4.46c.54-.19 1.01.13.97.89z" /></svg>
+            Написати в Telegram
+          </a>
+        </div>
+
+        <div class="contact-status">
+          <div class="contact-status-dot"></div>
+          Онлайн · відповідаємо протягом 15 хвилин
+        </div>
+
+        <footer class="contact-footer">
+          <span>© 2025 TechLab. Всі права захищені.</span>
+          <div class="contact-footer-links">
+            <a href="#catalog" onclick="showPage('catalogPage')">Каталог</a>
+            <a href="#preview" onclick="showPage('previewPage')">Про нас</a>
+            <a href="https://t.me/silmage" target="_blank" rel="noopener">Гарантія</a>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Page switching script -->
+    <script>
+      var pageHashById = {
+        previewPage: "preview",
+        catalogPage: "catalog",
+        contactsPage: "contacts",
+      };
+
+      var pageIdByHash = {
+        preview: "previewPage",
+        catalog: "catalogPage",
+        contacts: "contactsPage",
+      };
+
+      function bindSiteNavigation() {
+        var navTargets = ["previewPage", "catalogPage", null, "contactsPage"];
+        document.querySelectorAll(".xnav-links").forEach(function (nav) {
+          nav.querySelectorAll(".xnav-link").forEach(function (link, index) {
+            var target = navTargets[index];
+            if (!target) return;
+            link.dataset.pageTarget = target;
+            link.onclick = function () {
+              showPage(target);
+            };
+          });
+        });
+      }
+
+      function showPage(pageId, options) {
+        var shouldUpdateHash = !options || options.updateHash !== false;
+        var shouldScroll = !options || options.scroll !== false;
+
+        var page = document.getElementById(pageId);
+        if (!page) {
+          pageId = "previewPage";
+          page = document.getElementById(pageId);
+        }
+        if (!page) return;
+
+        // Keep the full site visible on index.html.
+        document.querySelectorAll(".page-container").forEach(function (section) {
+          section.classList.add("active");
+        });
+
+        // Update nav active state for ALL xnav-link elements
+        document.querySelectorAll(".xnav-link").forEach(function (link) {
+          link.classList.remove("active");
+        });
+
+        var activeSelector = '.xnav-link[data-page-target="' + pageId + '"]';
+        document.querySelectorAll(activeSelector).forEach(function (link) {
+          link.classList.add("active");
+        });
+
+        var nextHash = pageHashById[pageId] || "preview";
+        if (shouldUpdateHash && window.location.hash.slice(1) !== nextHash) {
+          window.history.pushState(null, "", "#" + nextHash);
+        }
+
+        if (shouldScroll) {
+          page.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      function showPageFromLocation() {
+        var hash = window.location.hash.slice(1);
+        var pageId = pageIdByHash[hash] || (document.getElementById(hash) ? hash : "previewPage");
+        showPage(pageId, { updateHash: false, scroll: Boolean(hash) });
+      }
+
+      window.addEventListener("hashchange", showPageFromLocation);
+      window.addEventListener("popstate", showPageFromLocation);
+      bindSiteNavigation();
+      showPageFromLocation();
+    </script>
   </body>
 </html>
