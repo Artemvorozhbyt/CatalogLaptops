@@ -1,5 +1,9 @@
 /* ── Responsive ── */
 @media (max-width: 900px) {
+    .xnav-links {
+        display: none;
+    }
+
     aside {
         display: none;
     }
@@ -30,6 +34,18 @@
 
     header {
         padding: 0 1rem;
+    }
+
+    .header-right {
+        gap: 0.5rem;
+    }
+
+    .lang-btn {
+        padding: 0.35rem 0.5rem;
+    }
+
+    .compare-btn {
+        padding: 0.45rem 0.7rem;
     }
 
     .logo {
@@ -65,6 +81,11 @@
 }
 
 @media (max-width: 480px) {
+    #compareLabel,
+    #filtersLabel {
+        display: none;
+    }
+
     .catalog-grid {
         grid-template-columns: 1fr;
     }

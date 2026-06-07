@@ -1,75 +1,44 @@
-// js/filters.js
-// ─────────────────────────────
-// Формування та застосування фільтрів
-// ─────────────────────────────
-
 import { laptops } from "./laptops.generated.js";
 import { state } from "./state.js";
-import { $, getUnique, countByKey, t, getCurrentLang } from "./utils.js";
+import { $, countByKey, getCurrentLang, getUnique, normalizeCategory, translateCategory } from "./utils.js";
 
-// Переклади для категорій
-const categoryLabels = {
-  uk: { gaming: "Ігрові", ultrabooks: "Ультрабуки", business: "Бізнес", office: "Офісні", professional: "Професійні", multimedia: "Мультимедійні" },
-  pl: { gaming: "Gamingowe", ultrabooks: "Ultrabooki", business: "Biznesowe", office: "Biurowe", professional: "Profesjonalne", multimedia: "Multimedialne" },
-  en: { gaming: "Gaming", ultrabooks: "Ultrabooks", business: "Business", office: "Office", professional: "Professional", multimedia: "Multimedia" },
-};
-
-const categoryLookup = Object.entries(categoryLabels).reduce((lookup, [, labels]) => {
-  Object.entries(labels).forEach(([key, label]) => {
-    lookup[key.toLowerCase()] = key;
-    lookup[label.toLowerCase()] = key;
-  });
-  return lookup;
-}, {});
-
-function normalizeCategory(value) {
-  if (!value || typeof value !== "string") return value;
-  return categoryLookup[value.toLowerCase()] || value;
-}
-
-// --- Побудова списків фільтрів у сайдбарі ---
 export function buildFilters() {
   renderCheckList("brandFilters", getUnique("brand", laptops), state.brands, "brand");
-  const categories = [...new Set(laptops.map((l) => normalizeCategory(l.category)))]
-    .filter(Boolean)
-    .sort();
+
+  const categories = [...new Set(laptops.map((l) => normalizeCategory(l.category)))].filter(Boolean).sort();
   renderCheckList("categoryFilters", categories, state.categories, "category");
+
   renderCheckList("ramFilters", getUnique("ram", laptops), state.rams, "ram");
   renderCheckList("screenFilters", getUnique("screen", laptops), state.screens, "screen");
   renderCheckList("gpuFilters", ["NVIDIA", "AMD", "Intel", "Apple"], state.gpus, "gpu");
 }
 
-// --- Допоміжна функція для генерації списку чекбоксів ---
 function renderCheckList(containerId, items, stateSet, field) {
   const container = $(containerId);
+  if (!container) return;
+
   const lang = getCurrentLang();
-  
+
   container.innerHTML = items
-    .map(
-      (item) => {
-        // Отримуємо переведену назву категорії, якщо це категорія
-        const canonicalItem = field === "category" ? normalizeCategory(item) : item;
-        let displayLabel = canonicalItem;
-        if (field === "category" && categoryLabels[lang] && categoryLabels[lang][canonicalItem]) {
-          displayLabel = categoryLabels[lang][canonicalItem];
-        }
-        
-        return `
+    .map((item) => {
+      const value = field === "category" ? normalizeCategory(item) : item;
+      const label = field === "category" ? translateCategory(value, lang) : value;
+      const count =
+        field === "gpu"
+          ? laptops.filter((l) => l.gpu.toLowerCase().includes(item.toLowerCase())).length
+          : field === "category"
+            ? laptops.filter((l) => normalizeCategory(l.category) === value).length
+            : countByKey(field, item, laptops);
+
+      return `
         <label class="check-item">
-          <input type="checkbox" value="${canonicalItem}" ${stateSet.has(canonicalItem) ? "checked" : ""}/>
-          <span class="check-box">${stateSet.has(canonicalItem) ? "✓" : ""}</span>
-          <span class="check-label">${displayLabel}</span>
-          <span class="check-count">${
-            field === "gpu"
-              ? laptops.filter((l) => l.gpu.toLowerCase().includes(item.toLowerCase())).length
-              : field === "category"
-              ? laptops.filter((l) => normalizeCategory(l.category) === canonicalItem).length
-              : countByKey(field, item, laptops)
-          }</span>
+          <input type="checkbox" value="${value}" ${stateSet.has(value) ? "checked" : ""}/>
+          <span class="check-box">${stateSet.has(value) ? "✓" : ""}</span>
+          <span class="check-label">${label}</span>
+          <span class="check-count">${count}</span>
         </label>
       `;
-      }
-    )
+    })
     .join("");
 
   container.querySelectorAll('input[type="checkbox"]').forEach((cb) => {
@@ -82,11 +51,9 @@ function renderCheckList(containerId, items, stateSet, field) {
   });
 }
 
-// --- Основна функція фільтрації ---
 export function applyFilters() {
   let list = [...laptops];
 
-  // Пошук
   if (state.search) {
     const q = state.search.toLowerCase();
     list = list.filter(
@@ -94,17 +61,20 @@ export function applyFilters() {
         l.name.toLowerCase().includes(q) ||
         l.brand.toLowerCase().includes(q) ||
         l.cpu.toLowerCase().includes(q) ||
-        l.category.toLowerCase().includes(q) ||
-        l.gpu.toLowerCase().includes(q)
+        normalizeCategory(l.category).toLowerCase().includes(q) ||
+        translateCategory(l.category, "uk").toLowerCase().includes(q) ||
+        translateCategory(l.category, "pl").toLowerCase().includes(q) ||
+        translateCategory(l.category, "en").toLowerCase().includes(q) ||
+        l.gpu.toLowerCase().includes(q),
     );
   }
 
-  // Фільтрація
   if (state.brands.size) list = list.filter((l) => state.brands.has(l.brand));
   if (state.categories.size) list = list.filter((l) => state.categories.has(normalizeCategory(l.category)));
   if (state.rams.size) list = list.filter((l) => state.rams.has(l.ram));
   if (state.screens.size) list = list.filter((l) => state.screens.has(l.screen));
-  if (state.gpus.size)
+
+  if (state.gpus.size) {
     list = list.filter((l) => {
       const g = l.gpu.toLowerCase();
       for (const f of state.gpus) {
@@ -113,17 +83,17 @@ export function applyFilters() {
           (f === "AMD" && g.includes("amd")) ||
           (f === "Intel" && g.includes("intel")) ||
           (f === "Apple" && g.includes("apple"))
-        )
+        ) {
           return true;
+        }
       }
       return false;
     });
+  }
 
-  // Діапазон цін
   list = list.filter((l) => l.price >= state.priceMin && l.price <= state.priceMax);
 
-  // Сортування
-  const ramVal = (s) => parseInt(s);
+  const ramVal = (s) => parseInt(s, 10) || 0;
   switch (state.sort) {
     case "price-asc":
       list.sort((a, b) => a.price - b.price);

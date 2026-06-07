@@ -1,9 +1,5 @@
-// js/state.js
-// ─────────────────────────────
-// Глобальний стан застосунку (application state)
-// ─────────────────────────────
+import { getCurrentLang, setLanguage as persistLanguage, SUPPORTED_LANGS } from "./utils.js";
 
-// Основний об'єкт стану
 export const state = {
   search: "",
   brands: new Set(),
@@ -18,35 +14,15 @@ export const state = {
   page: 1,
   perPage: 12,
   compareList: [],
-  currentLanguage: "uk", // за замовчуванням
+  currentLanguage: getCurrentLang(),
 };
 
-// --- Перемикання мови ---
 export function setLanguage(lang) {
-  const supported = ["uk", "pl", "en"];
-  if (!supported.includes(lang)) return;
+  if (!SUPPORTED_LANGS.includes(lang)) return;
 
-  state.currentLanguage = lang;
-  localStorage.setItem("laptop-catalog-lang", lang);
+  state.currentLanguage = persistLanguage(lang);
 
-  // Оновлюємо мову у utils
-  import("./utils.js").then((utils) => {
-    utils.setLanguage(lang);
-  });
-
-  // Оновлюємо тексти інтерфейсу
-  import("./utils.js").then((utils) => {
-    if (utils.updateLanguage) utils.updateLanguage();
-  });
-
-  // Перерендер каталогу
   import("./render.js").then((mod) => {
-    if (mod.renderAll) mod.renderAll();
+    mod.renderAll?.();
   });
 }
-
-// --- Завантаження мови при старті ---
-document.addEventListener("DOMContentLoaded", () => {
-  const savedLang = localStorage.getItem("laptop-catalog-lang") || "uk";
-  state.currentLanguage = savedLang;
-});

@@ -1,35 +1,30 @@
-// js/render.js
-// ─────────────────────────────────────────────
-// Основні функції рендеру каталогу ноутбуків
-// ─────────────────────────────────────────────
-
-import { laptops } from "./laptops.generated.js";
 import { state } from "./state.js";
-import { applyFilters } from "./filters.js";
-import { fmt, $, t, getCurrentLang } from "./utils.js";
+import { applyFilters, buildFilters } from "./filters.js";
+import { $, fmt, getCurrentLang, t, translateCategory } from "./utils.js";
 import { openDetail, toggleCompare } from "./modals.js";
-import { buildFilters } from "./filters.js";
 
 function getCoverImage(laptop) {
   if (Array.isArray(laptop.images) && laptop.images.length) {
     return `<img src="${laptop.images[0]}" alt="${laptop.brand} ${laptop.name}" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x300?text=No+Image'">`;
   }
-  return `<span class="card-emoji">${laptop.emoji}</span>`;
+  return `<span class="card-emoji">${laptop.emoji || ""}</span>`;
 }
-
-// ─── Рендер однієї картки ноутбука ─────────────────────────────
 
 export function cardHTML(laptop, listMode = false) {
   const inCompare = state.compareList.includes(laptop.id);
-  const lang = getCurrentLang ? getCurrentLang() : "uk";
+  const lang = getCurrentLang();
   const imageMarkup = getCoverImage(laptop);
 
   const badge = laptop.badge
     ? `
       <span class="card-badge badge-${laptop.badge}">
-        ${laptop.badge === "new" ? t("new_badge", lang)
-          : laptop.badge === "hot" ? t("hot_badge", lang)
-          : t("sale_badge", lang)}
+        ${
+          laptop.badge === "new"
+            ? t("new_badge", lang)
+            : laptop.badge === "hot"
+              ? t("hot_badge", lang)
+              : t("sale_badge", lang)
+        }
       </span>
     `
     : "";
@@ -37,8 +32,9 @@ export function cardHTML(laptop, listMode = false) {
   const compareTgl = `
     <button class="compare-toggle ${inCompare ? "active" : ""}"
       data-id="${laptop.id}"
-      title="${inCompare ? t("remove_from_compare", lang) : t("add_to_compare", lang)}">
-      ⚖️
+      title="${inCompare ? t("remove_from_compare", lang) : t("add_to_compare", lang)}"
+      aria-label="${inCompare ? t("remove_from_compare", lang) : t("add_to_compare", lang)}">
+      ⚖
     </button>
   `;
 
@@ -58,7 +54,6 @@ export function cardHTML(laptop, listMode = false) {
     </div>
   `;
 
-  // ----- Вид списку -----
   if (listMode) {
     return `
       <div class="laptop-card list-card" data-id="${laptop.id}">
@@ -68,7 +63,7 @@ export function cardHTML(laptop, listMode = false) {
           <div class="card-info">
             <div class="card-brand">${laptop.brand}</div>
             <div class="card-name">${laptop.name}</div>
-            <span class="spec-chip" style="font-size:.75rem">${laptop.category}</span>
+            <span class="spec-chip" style="font-size:.75rem">${translateCategory(laptop.category, lang)}</span>
           </div>
           <div class="card-specs-wrap">${specs}</div>
           <div class="card-action">
@@ -81,7 +76,6 @@ export function cardHTML(laptop, listMode = false) {
     `;
   }
 
-  // ----- Вид сітки -----
   return `
     <div class="laptop-card" data-id="${laptop.id}">
       ${badge}
@@ -100,9 +94,10 @@ export function cardHTML(laptop, listMode = false) {
   `;
 }
 
-// ─── Головна функція рендеру каталогу ─────────────────────────────
-
 export function renderCatalog() {
+  const catalog = $("catalog");
+  if (!catalog) return;
+
   const filtered = applyFilters();
   const lang = getCurrentLang();
   const resultCount = $("resultCount");
@@ -116,7 +111,6 @@ export function renderCatalog() {
   const start = (state.page - 1) * state.perPage;
   const paged = filtered.slice(start, start + state.perPage);
 
-  const catalog = $("catalog");
   catalog.className = state.view === "grid" ? "catalog-grid" : "catalog-list";
 
   if (paged.length === 0) {
@@ -128,34 +122,32 @@ export function renderCatalog() {
       </div>
     `;
   } else {
-    catalog.innerHTML = paged.map(l => cardHTML(l, state.view === "list")).join("");
+    catalog.innerHTML = paged.map((l) => cardHTML(l, state.view === "list")).join("");
   }
 
-  // Події на кнопках
-  catalog.querySelectorAll(".detail-btn").forEach(btn =>
-    btn.addEventListener("click", e => {
+  catalog.querySelectorAll(".detail-btn").forEach((btn) =>
+    btn.addEventListener("click", (e) => {
       e.stopPropagation();
       openDetail(+btn.dataset.id);
-    })
+    }),
   );
 
-  catalog.querySelectorAll(".compare-toggle").forEach(btn =>
-    btn.addEventListener("click", e => {
+  catalog.querySelectorAll(".compare-toggle").forEach((btn) =>
+    btn.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleCompare(+btn.dataset.id);
-    })
+    }),
   );
 
   renderPagination(pages);
 }
 
-// ─── Пагінація ─────────────────────────────
-
 export function renderPagination(pages) {
   const wrap = $("pagination");
+  if (!wrap) return;
+
   if (pages <= 1) {
     wrap.innerHTML = "";
-    syncSidebarHeight();
     return;
   }
 
@@ -172,63 +164,45 @@ export function renderPagination(pages) {
   html += `<button class="page-btn" id="nextPage" ${state.page === pages ? "disabled" : ""}>›</button>`;
   wrap.innerHTML = html;
 
-  wrap.querySelectorAll("[data-page]").forEach(btn =>
+  const keepPaginationInView = () => {
+    requestAnimationFrame(() => {
+      document.getElementById("pagination")?.scrollIntoView({
+        block: "center",
+        behavior: "auto",
+      });
+    });
+  };
+
+  wrap.querySelectorAll("[data-page]").forEach((btn) =>
     btn.addEventListener("click", () => {
       state.page = +btn.dataset.page;
       renderCatalog();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    })
+      keepPaginationInView();
+    }),
   );
 
   wrap.querySelector("#prevPage")?.addEventListener("click", () => {
-    state.page--;
-    renderCatalog();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (state.page > 1) {
+      state.page -= 1;
+      renderCatalog();
+      keepPaginationInView();
+    }
   });
 
   wrap.querySelector("#nextPage")?.addEventListener("click", () => {
-    state.page++;
-    renderCatalog();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-
-  syncSidebarHeight();
-}
-
-let sidebarResizeBound = false;
-
-function syncSidebarHeight() {
-  const sidebar = $("sidebar");
-  const main = sidebar?.closest(".page")?.querySelector("main");
-  const pagination = $("pagination");
-
-  if (!sidebar || !main || !pagination) return;
-
-  if (!sidebarResizeBound) {
-    sidebarResizeBound = true;
-    window.addEventListener("resize", () => requestAnimationFrame(syncSidebarHeight));
-  }
-
-  if (window.matchMedia("(max-width: 900px)").matches) {
-    sidebar.style.height = "";
-    return;
-  }
-
-  requestAnimationFrame(() => {
-    const mainRect = main.getBoundingClientRect();
-    const paginationRect = pagination.getBoundingClientRect();
-    const targetHeight = Math.ceil(paginationRect.bottom - mainRect.top);
-
-    if (targetHeight > 0) {
-      sidebar.style.height = `${targetHeight}px`;
+    if (state.page < pages) {
+      state.page += 1;
+      renderCatalog();
+      keepPaginationInView();
     }
   });
 }
 
-// ─── Активні теги фільтрів ─────────────────────────────
-
 export function renderActiveTags() {
   const wrap = $("activeFilters");
+  if (!wrap) return;
+
+  const lang = getCurrentLang();
   const tags = [];
 
   if (state.search) {
@@ -239,49 +213,45 @@ export function renderActiveTags() {
         $("searchInput").value = "";
         state.page = 1;
         renderAll();
-      }
+      },
     });
   }
 
   for (const b of state.brands) {
     tags.push({
-      label: `🏷️ ${b}`,
+      label: `🏷 ${b}`,
       clear: () => {
         state.brands.delete(b);
         state.page = 1;
         renderAll();
-      }
+      },
     });
   }
 
   for (const c of state.categories) {
     tags.push({
-      label: `📂 ${c}`,
+      label: `📂 ${translateCategory(c, lang)}`,
       clear: () => {
         state.categories.delete(c);
         state.page = 1;
         renderAll();
-      }
+      },
     });
   }
 
   wrap.innerHTML = tags
     .map(
-      (t, i) => `
-      <span class="filter-tag">
-        ${t.label}
-        <button data-tag="${i}">✕</button>
-      </span>
-    `
+      (tag, i) => `
+        <span class="filter-tag">
+          ${tag.label}
+          <button data-tag="${i}" aria-label="Remove filter">×</button>
+        </span>
+      `,
     )
     .join("");
 
-  wrap.querySelectorAll("button[data-tag]").forEach(btn =>
-    btn.addEventListener("click", () => tags[+btn.dataset.tag].clear())
-  );
+  wrap.querySelectorAll("button[data-tag]").forEach((btn) => btn.addEventListener("click", () => tags[+btn.dataset.tag].clear()));
 }
-
-// ─── Головна об'єднаюча функція ─────────────────────────────
 
 export function renderAll() {
   buildFilters();

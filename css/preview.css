@@ -9,110 +9,9 @@
   overflow-x: hidden;
 }
 
-/* NAV */
-#previewPage .xnav {
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 2.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  background: rgba(5, 5, 15, 0.7);
-  backdrop-filter: blur(20px);
-  position: relative;
-  z-index: 50;
-}
-#previewPage .xlogo {
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
-  color: #fff;
-}
-#previewPage .xlogo b {
-  color: #7c3aed;
-  font-weight: 900;
-}
-#previewPage .xnav-links {
-  display: flex;
-  gap: 1.8rem;
-}
-#previewPage .xnav-link {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 500;
-  cursor: pointer;
-  transition: color 0.2s;
-  letter-spacing: 0.2px;
-}
-#previewPage .xnav-link:hover {
-  color: #fff;
-}
-#previewPage .xnav-link.active {
-  color: #7c3aed;
-  font-weight: 600;
-}
-#previewPage .xnav-r {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-#previewPage .xlang {
-  display: flex;
-  gap: 3px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  padding: 3px;
-}
-#previewPage .xlang button {
-  background: none;
-  border: none;
-  color: rgba(255, 255, 255, 0.35);
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 9px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.2s;
-  font-family: inherit;
-}
-#previewPage .xlang button.on {
-  background: #7c3aed;
-  color: #fff;
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.4);
-}
-#previewPage .xcmp {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  color: rgba(255, 255, 255, 0.55);
-  padding: 6px 13px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s;
-  font-family: inherit;
-}
-#previewPage .xcmp:hover {
-  border-color: rgba(124, 58, 237, 0.4);
-  color: #c4b5fd;
-  background: rgba(124, 58, 237, 0.08);
-}
-#previewPage .xbadge {
-  background: #7c3aed;
-  color: #fff;
-  font-size: 10px;
-  padding: 1px 6px;
-  border-radius: 100px;
-  font-weight: 700;
-}
-
 /* HERO */
 .xhero {
-  min-height: calc(100vh - 58px);
+  min-height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1086,9 +985,6 @@
   }
   .xfeats {
     grid-template-columns: 1fr 1fr;
-  }
-  #previewPage .xnav-links {
-    display: none;
   }
   .xmarquee-wrap {
     display: none;
