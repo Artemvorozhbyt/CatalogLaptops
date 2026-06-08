@@ -1364,3 +1364,228 @@
     U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
+/* =====================================================
+   MOBILE FIX для preview.css
+   Вставити в КІНЕЦЬ файлу css/preview.css
+   ===================================================== */
+
+/* ── Планшет широкий: 768px–980px ── */
+@media (max-width: 980px) {
+  .xhero {
+    padding: 2.5rem 1.5rem 2rem;
+    overflow-x: hidden;
+  }
+
+  .xgrid {
+    gap: 2rem;
+  }
+
+  /* Пошук не виходить за межі */
+  .xsearch {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .xsearch-tags {
+    display: none;
+    /* прибираємо теги RTX/M3/i7 щоб не переповнювали */
+  }
+
+  /* Статистика — рівномірно */
+  .xstats {
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  /* Features — 2 колонки */
+  .xfeats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ── Мобільний: до 600px (більшість телефонів) ── */
+@media (max-width: 600px) {
+  #previewPage {
+    overflow-x: hidden;
+  }
+
+  .xhero {
+    padding: 2rem 1rem 1.5rem;
+    min-height: auto;
+    overflow-x: hidden;
+  }
+
+  .xgrid {
+    gap: 1.8rem;
+  }
+
+  /* Заголовок */
+  .xh1 {
+    font-size: clamp(28px, 9vw, 42px);
+    letter-spacing: -1.5px;
+    word-break: break-word;
+  }
+
+  /* Підзаголовок */
+  .xsub {
+    font-size: 13.5px;
+    max-width: 100%;
+  }
+
+  /* Пошуковий рядок */
+  .xsearch {
+    padding: 9px 12px;
+    gap: 8px;
+    max-width: 100%;
+    flex-wrap: nowrap;
+  }
+
+  .xsearch-tags {
+    display: none;
+  }
+
+  .xsearch input {
+    font-size: 13px;
+    min-width: 0;
+    /* дозволяє стискатись */
+  }
+
+  .xsearch-btn {
+    padding: 6px 12px;
+    font-size: 11px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Статистика — зменшуємо відступи */
+  .xst {
+    padding: 0 0.8rem;
+  }
+
+  .xstn {
+    font-size: 22px;
+  }
+
+  .xstl {
+    font-size: 9px;
+  }
+
+  /* Trust row */
+  .xtrust {
+    gap: 10px;
+  }
+
+  /* Кнопки CTA */
+  .xcta {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .xbtn-p,
+  .xbtn-g {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+
+  /* Ноутбук справа — зменшуємо */
+  .xlaptop-stage svg,
+  .xlaptop-stage img {
+    max-width: 85%;
+    height: auto;
+  }
+
+  .xlive-bar {
+    width: 90%;
+    padding: 7px 10px;
+  }
+
+  .xlive-val {
+    font-size: 11px;
+  }
+
+  /* Категорії — 1 колонка */
+  .xcats {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  /* Features — 2 колонки */
+  .xfeats {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .xfeat {
+    padding: 10px 11px;
+  }
+
+  .xfeat-t {
+    font-size: 11px;
+  }
+
+  .xfeat-s {
+    display: none;
+    /* підзаголовок фічі прибираємо на малих екранах */
+  }
+
+  /* Marquee */
+  .xmarquee-wrap {
+    display: none;
+  }
+
+  /* Scroll indicator */
+  .xscroll {
+    display: none;
+  }
+}
+
+/* ── Дуже малий: до 400px (старі/малі телефони) ── */
+@media (max-width: 400px) {
+  .xhero {
+    padding: 1.5rem 0.85rem 1.2rem;
+  }
+
+  .xh1 {
+    font-size: clamp(24px, 10vw, 34px);
+    letter-spacing: -1px;
+  }
+
+  .xsub {
+    font-size: 12.5px;
+  }
+
+  /* Статистика — ще менше */
+  .xst {
+    padding: 0 0.6rem;
+  }
+
+  .xstn {
+    font-size: 19px;
+  }
+
+  .xst-div {
+    height: 28px;
+  }
+
+  /* Features — 1 колонка на зовсім малих */
+  .xfeats {
+    grid-template-columns: 1fr;
+  }
+
+  /* Кнопки */
+  .xbtn-p,
+  .xbtn-g {
+    padding: 13px 14px;
+    font-size: 13px;
+  }
+
+  /* Tag */
+  .xtag-text {
+    font-size: 9px;
+  }
+}

@@ -391,6 +391,11 @@
     color: #fff;
 }
 
+/* ── FIX: кнопка порівняння на картці (іконка ваг) ──
+   Вставити в components.css, замінивши існуючий блок .compare-toggle
+   (рядки ~394–415)
+   ────────────────────────────────────────────────── */
+
 .compare-toggle {
     position: absolute;
     top: 0.7rem;
@@ -406,6 +411,10 @@
     font-size: 0.9rem;
     z-index: 2;
     transition: all 0.2s;
+
+    /* ↓ ЦЕ ВИПРАВЛЯЄ ПРОБЛЕМУ — примусово кольоровий emoji */
+    color: #fff;
+    font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
 }
 
 .compare-toggle:hover,
